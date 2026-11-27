@@ -296,6 +296,9 @@
         <button data-category="Naturals Soaps" class="category-btn px-5 py-2.5 rounded-full text-xs tracking-[0.18em] uppercase transition bg-cream text-umber hover:bg-blush border border-umber/10">
           Naturals Soaps
         </button>
+        <button data-category="Millet Collections" class="category-btn px-5 py-2.5 rounded-full text-xs tracking-[0.18em] uppercase transition bg-cream text-umber hover:bg-blush border border-umber/10">
+          Millet Collections
+        </button>
       </div>
 
       <!-- Product Grid -->
@@ -917,9 +920,116 @@
         description: "A floral, woody soap-bar concept inspired by rose and sandalwood combinations in premium botanical care.",
         ingredients: "Proposed botanicals: rose and sandalwood. Complete INCI formulation, certification status and manufacturing details to be confirmed.",
         ritual: "Lather gently on wet skin, rinse thoroughly and keep the bar dry between uses."
+      },
+      {
+        id: 13,
+        name: "Sprouted Ragi",
+        category: "Millet Collections",
+        subtitle: "Sprouted Finger Millet • Kerala-Inspired",
+        price: 249,
+        priceIndicative: true,
+        availableForEnquiry: true,
+        size: "250 g (provisional)",
+        rating: null,
+        reviews: 0,
+        badge: "New Concept",
+        vesselType: "millet",
+        accentColor: "#A87663",
+        description: "A finely milled sprouted ragi concept for cooked porridge and everyday recipes.",
+        ingredients: "Proposed main ingredient: sprouted ragi (finger millet). Processing, full ingredients, allergens, nutrition and certification pending confirmation.",
+        ritual: "Use in thoroughly cooked porridge or other cooked preparations; final cooking directions to be confirmed."
+      },
+      {
+        id: 14,
+        name: "Foxtail Millet",
+        category: "Millet Collections",
+        subtitle: "Thinai • Finely Milled Millet",
+        price: 219,
+        priceIndicative: true,
+        availableForEnquiry: true,
+        size: "250 g (provisional)",
+        rating: null,
+        reviews: 0,
+        badge: "New Concept",
+        vesselType: "millet",
+        accentColor: "#B8A279",
+        description: "Finely milled foxtail millet concept for home-style breakfast preparations.",
+        ingredients: "Proposed main ingredient: foxtail millet. Ingredient declaration, allergens and nutrition panel pending confirmation.",
+        ritual: "Use in cooked recipes; follow final pack instructions."
+      },
+      {
+        id: 15,
+        name: "Little Millet",
+        category: "Millet Collections",
+        subtitle: "Chama • Finely Milled Millet",
+        price: 229,
+        priceIndicative: true,
+        availableForEnquiry: true,
+        size: "250 g (provisional)",
+        rating: null,
+        reviews: 0,
+        badge: "New Concept",
+        vesselType: "millet",
+        accentColor: "#C7B283",
+        description: "A little millet concept inspired by familiar Kerala grain preparations.",
+        ingredients: "Proposed main ingredient: little millet (Chama). Ingredient declaration, allergens and nutrition panel pending confirmation.",
+        ritual: "Mix into batter or porridge and cook fully before serving."
+      },
+      {
+        id: 16,
+        name: "Barnyard Millet",
+        category: "Millet Collections",
+        subtitle: "Kuthiraivali • Finely Milled Millet",
+        price: 229,
+        priceIndicative: true,
+        availableForEnquiry: true,
+        size: "250 g (provisional)",
+        rating: null,
+        reviews: 0,
+        badge: "New Concept",
+        vesselType: "millet",
+        accentColor: "#AE9C7A",
+        description: "A finely milled barnyard millet concept for cooked breakfast bowls and recipes.",
+        ingredients: "Proposed main ingredient: barnyard millet. Ingredient declaration, allergens and nutrition panel pending confirmation.",
+        ritual: "Use in well-cooked batter or porridge; final preparation instructions pending."
+      },
+      {
+        id: 17,
+        name: "Kodo Millet",
+        category: "Millet Collections",
+        subtitle: "Varagu • Finely Milled Millet",
+        price: 239,
+        priceIndicative: true,
+        availableForEnquiry: true,
+        size: "250 g (provisional)",
+        rating: null,
+        reviews: 0,
+        badge: "New Concept",
+        vesselType: "millet",
+        accentColor: "#B6A17B",
+        description: "A kodo millet concept for cooked traditional and modern millet recipes.",
+        ingredients: "Proposed main ingredient: kodo millet. Ingredient declaration, allergens and nutrition panel pending confirmation.",
+        ritual: "Prepare in cooked dishes only and follow final approved pack directions."
+      },
+      {
+        id: 18,
+        name: "Multi-Millet Blend",
+        category: "Millet Collections",
+        subtitle: "Ragi • Foxtail • Little Millet Blend",
+        price: 279,
+        priceIndicative: true,
+        availableForEnquiry: true,
+        size: "250 g (provisional)",
+        rating: null,
+        reviews: 0,
+        badge: "New Concept",
+        vesselType: "millet",
+        accentColor: "#BD9977",
+        description: "A multi-millet blend concept bringing several familiar grains together for everyday cooked recipes.",
+        ingredients: "Proposed grain blend: ragi, foxtail millet and little millet. Ratios, full ingredients, allergens and nutrition panel pending confirmation.",
+        ritual: "Use in fully cooked recipes. Final blend ratios and cooking guidance pending."
       }
     ];
-
 
 ;
     // =========================================================================
@@ -967,6 +1077,23 @@
     // =========================================================================
     function renderVesselIllustration(product) {
       const { vesselType, accentColor, name } = product;
+      if (vesselType === "millet") {
+        // Illustrative premium pouch concept; no real-product photograph or certification is implied.
+        return `
+          <svg viewBox="0 0 180 210" class="w-40 h-44 mx-auto drop-shadow-md transition-transform duration-500 group-hover:scale-105" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${name} pack illustration">
+            <ellipse cx="90" cy="193" rx="58" ry="8" fill="#7C5A43" fill-opacity="0.10" />
+            <path d="M51 29 L129 29 L140 186 Q90 196 40 186 Z" fill="#E8D7BF" stroke="#7C5A43" stroke-width="1.3"/>
+            <path d="M51 29 L129 29 L132 47 L48 47 Z" fill="#B89A72" stroke="#7C5A43" stroke-width="1.1"/>
+            <path d="M45 177 Q90 186 135 177 L140 186 Q90 196 40 186 Z" fill="${accentColor}" fill-opacity=".6"/>
+            <rect x="50" y="59" width="80" height="102" rx="4" fill="#FAF6EE" stroke="#C59B76" stroke-width="1"/>
+            <image href="${originalWordmark}" x="58" y="68" width="64" height="43" preserveAspectRatio="xMidYMid meet" />
+            <line x1="62" y1="114" x2="118" y2="114" stroke="#C59B76"/>
+            <text x="90" y="126" text-anchor="middle" fill="#7C5A43" font-family="Cormorant Garamond,serif" font-size="12" font-style="italic">Millet Collection</text>
+            <text x="90" y="140" text-anchor="middle" fill="#A97954" font-family="Montserrat,sans-serif" font-size="5" letter-spacing="1">PRODUCT CONCEPT</text>
+            <path d="M75 154 L80 145 L85 154 M93 154 L98 145 L103 154" fill="none" stroke="${accentColor}" stroke-width="1.2"/>
+          </svg>
+        `;
+      }
       if (vesselType === "soap") {
         // Brand-matched illustrated bath bar; no product photograph or certification implied.
         return `
@@ -1220,7 +1347,7 @@
           <div class="md:col-span-5 bg-gradient-to-b from-blush/60 to-cream rounded-2xl p-6 border border-umber/10 text-center">
             <span class="inline-block px-3 py-1 rounded-full bg-ivory text-[10px] tracking-[0.2em] uppercase text-umber mb-2">${product.badge}</span>
             ${renderVesselIllustration(product)}
-            <p class="text-[11px] uppercase tracking-[0.2em] text-umber/70 mt-3">${product.size}${product.vesselType === "soap" ? " • Illustrated Soap Concept" : " • UV-Protected Glass"}</p>
+            <p class="text-[11px] uppercase tracking-[0.2em] text-umber/70 mt-3">${product.size}${product.vesselType === "soap" ? " • Illustrated Soap Concept" : product.vesselType === "millet" ? " • Illustrative Millet Pack" : " • UV-Protected Glass"}</p>
           </div>
           <div class="md:col-span-7">
             <span class="text-[11px] uppercase tracking-[0.22em] text-bronze font-semibold">${product.category}</span>
@@ -1235,12 +1362,12 @@
             <p class="mt-4 text-xs sm:text-sm text-umber/85 leading-relaxed font-light">${product.description}</p>
 
             <div class="mt-5 p-4 rounded-2xl bg-blush/45 border border-umber/10">
-              <h4 class="text-[10px] uppercase tracking-[0.22em] text-umber font-semibold">${product.vesselType === "soap" ? "Proposed Botanicals — Final Ingredients Pending" : "Full Botanical Ingredient List"}</h4>
+              <h4 class="text-[10px] uppercase tracking-[0.22em] text-umber font-semibold">${product.vesselType === "millet" ? "Proposed Ingredients — Final Details Pending" : product.vesselType === "soap" ? "Proposed Botanicals — Final Ingredients Pending" : "Full Botanical Ingredient List"}</h4>
               <p class="text-xs text-umber/80 mt-1.5 leading-relaxed">${product.ingredients}</p>
             </div>
 
             <div class="mt-4">
-              <h4 class="text-[10px] uppercase tracking-[0.22em] text-umber font-semibold">Application Ritual</h4>
+              <h4 class="text-[10px] uppercase tracking-[0.22em] text-umber font-semibold">${product.vesselType === "millet" ? "Preparation Suggestions" : "Application Ritual"}</h4>
               <p class="text-xs text-umber/80 mt-1 leading-relaxed italic font-serif text-base">${product.ritual}</p>
             </div>
 
