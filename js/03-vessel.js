@@ -20,6 +20,21 @@
           </svg>
         `;
       }
+      if (vesselType === "shampoo-bar") {
+        // Illustrative solid shampoo bar and paper sleeve; not a photograph of a finished product.
+        return `
+          <svg viewBox="0 0 180 210" class="w-40 h-44 mx-auto drop-shadow-md transition-transform duration-500 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${name} illustrated shampoo bar">
+            <ellipse cx="90" cy="182" rx="60" ry="9" fill="#7C5A43" fill-opacity=".10" />
+            <rect x="34" y="47" width="112" height="124" rx="28" fill="${accentColor}" stroke="#7C5A43" stroke-width="1.4" />
+            <rect x="40" y="53" width="100" height="112" rx="24" fill="#F8F4ED" fill-opacity=".15" stroke="#F8F4ED" stroke-opacity=".45" />
+            <path d="M37 89 Q90 81 143 89 L143 145 Q90 151 37 145 Z" fill="#F8F4ED" stroke="#C59B76" stroke-width="1.1" />
+            <image href="${originalWordmark}" x="53" y="92" width="74" height="31" preserveAspectRatio="xMidYMid meet" />
+            <path d="M65 124 H115" stroke="#C59B76" stroke-width=".8"/>
+            <text x="90" y="135" text-anchor="middle" fill="#7C5A43" font-family="Cormorant Garamond,serif" font-size="10.5" font-style="italic">Shampoo Bar</text>
+            <text x="90" y="142" text-anchor="middle" fill="#A97954" font-family="Montserrat,sans-serif" font-size="4.4" letter-spacing=".6">HAIR CARE CONCEPT</text>
+          </svg>
+        `;
+      }
       if (vesselType === "soap") {
         // Brand-matched illustrated bath bar; no product photograph or certification implied.
         return `

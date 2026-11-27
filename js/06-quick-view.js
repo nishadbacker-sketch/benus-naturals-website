@@ -13,7 +13,7 @@
           <div class="md:col-span-5 bg-gradient-to-b from-blush/60 to-cream rounded-2xl p-6 border border-umber/10 text-center">
             <span class="inline-block px-3 py-1 rounded-full bg-ivory text-[10px] tracking-[0.2em] uppercase text-umber mb-2">${product.badge}</span>
             ${renderVesselIllustration(product)}
-            <p class="text-[11px] uppercase tracking-[0.2em] text-umber/70 mt-3">${product.size}${product.vesselType === "soap" ? " • Illustrated Soap Concept" : product.vesselType === "millet" ? " • Illustrative Millet Pack" : " • UV-Protected Glass"}</p>
+            <p class="text-[11px] uppercase tracking-[0.2em] text-umber/70 mt-3">${product.size}${product.vesselType === "shampoo-bar" ? " • Illustrated Shampoo Bar Concept" : product.vesselType === "soap" ? " • Illustrated Soap Concept" : product.vesselType === "millet" ? " • Illustrative Millet Pack" : " • UV-Protected Glass"}</p>
           </div>
           <div class="md:col-span-7">
             <span class="text-[11px] uppercase tracking-[0.22em] text-bronze font-semibold">${product.category}</span>
@@ -28,7 +28,7 @@
             <p class="mt-4 text-xs sm:text-sm text-umber/85 leading-relaxed font-light">${product.description}</p>
 
             <div class="mt-5 p-4 rounded-2xl bg-blush/45 border border-umber/10">
-              <h4 class="text-[10px] uppercase tracking-[0.22em] text-umber font-semibold">${product.vesselType === "millet" ? "Proposed Ingredients — Final Details Pending" : product.vesselType === "soap" ? "Proposed Botanicals — Final Ingredients Pending" : "Full Botanical Ingredient List"}</h4>
+              <h4 class="text-[10px] uppercase tracking-[0.22em] text-umber font-semibold">${product.vesselType === "shampoo-bar" ? "Proposed Hair-Care Ingredients — Details Pending" : product.vesselType === "millet" ? "Proposed Ingredients — Final Details Pending" : product.vesselType === "soap" ? "Proposed Botanicals — Final Ingredients Pending" : "Full Botanical Ingredient List"}</h4>
               <p class="text-xs text-umber/80 mt-1.5 leading-relaxed">${product.ingredients}</p>
             </div>
 
