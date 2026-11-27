@@ -1,0 +1,54 @@
+
+    body {
+      background-color: #F8F4ED;
+      color: #7C5A43;
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Custom subtle scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F8F4ED;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C59B76;
+      border-radius: 9999px;
+    }
+
+    /* Luxury shimmer effect on metallic accents */
+    .bronze-gradient {
+      background: linear-gradient(135deg, #8B6244 0%, #C59B76 50%, #9A6D4A 100%);
+    }
+    .bronze-text-gradient {
+      background: linear-gradient(135deg, #7C5A43 0%, #B8875E 50%, #7C5A43 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Glassmorphic Header */
+    .glass-nav {
+      background: rgba(248, 244, 237, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    /* Subtle floating animation for botanical artwork */
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    .animate-float {
+      animation: gentleFloat 6s ease-in-out infinite;
+    }
+
+    /* Drawer transitions */
+    .drawer-backdrop {
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+    .drawer-panel {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  
