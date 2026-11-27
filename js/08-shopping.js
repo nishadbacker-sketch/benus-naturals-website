@@ -2,8 +2,11 @@
     // 8. SHOPPING BAG, WISHLIST & CHECKOUT SIMULATION
     // =========================================================================
     function addToBag(productId) {
+      const product = products.find(item => item.id === productId);
+      if (!product) return;
       const existing = cart.find(item => item.id === productId);
       if (existing) {
+        if (existing.qty >= MAX_ITEM_QTY) { showToast('Maximum quantity reached'); return; }
         existing.qty += 1;
       } else {
         cart.push({ id: productId, qty: 1 });
@@ -16,7 +19,8 @@
     function updateQty(productId, delta) {
       const idx = cart.findIndex(item => item.id === productId);
       if (idx === -1) return;
-      cart[idx].qty += delta;
+      if (!Number.isInteger(delta)) return;
+      cart[idx].qty = Math.min(MAX_ITEM_QTY, cart[idx].qty + delta);
       if (cart[idx].qty <= 0) {
         cart.splice(idx, 1);
       }
@@ -32,8 +36,10 @@
         msg.classList.remove("hidden");
         updateCartUI();
       } else {
-        msg.textContent = "Try code BENU15 for 15% off your order.";
+        promoDiscount = 0;
+        msg.textContent = code ? "Code not recognised. Try BENU15." : "Enter a promo code to apply it.";
         msg.classList.remove("hidden");
+        updateCartUI();
       }
     }
 
@@ -78,16 +84,12 @@
         }).join("");
       }
 
-      const subtotal = cart.reduce((sum, item) => {
-        const p = products.find(prod => prod.id === item.id);
-        return sum + p.price * item.qty;
-      }, 0);
-
-      const discountAmount = Math.round(subtotal * promoDiscount);
-      const finalTotal = subtotal - discountAmount;
+      const { subtotal, discount: discountAmount, total: finalTotal } = cartTotals();
 
       document.getElementById("cartSubtotal").textContent = `₹${subtotal.toLocaleString('en-IN')}`;
       document.getElementById("cartTotal").textContent = `₹${finalTotal.toLocaleString('en-IN')}`;
+      document.getElementById("checkoutBtn").disabled = cart.length === 0;
+      persistShoppingState();
 
       const discountRow = document.getElementById("discountRow");
       if (promoDiscount > 0 && subtotal > 0) {
@@ -110,10 +112,53 @@
       }
     }
 
-    function payuCheckout() {
+    const checkoutModal = document.getElementById("checkoutModal");
+    function openCheckout() {
       if (cart.length === 0) { showToast("Your bag is currently empty"); return; }
-      showToast("Online payments via PayU are not yet available. Please contact us on WhatsApp to order.");
+      const t = cartTotals();
+      document.getElementById("checkoutSummary").textContent =
+        `Items: #{cart.reduce((n, item) => n + item.qty, 0)} • Estimated product total: ₹#{t.total.toLocaleString('en-IN')}#{promoDiscount ? ' (BENU15 applied)' : ''}`;
+      closeCartDrawer();
+      checkoutModal.classList.remove("hidden");
+      document.getElementById("orderName").focus();
     }
+    function closeCheckout() { checkoutModal.classList.add("hidden"); }
+    document.getElementById("closeCheckoutBtn").addEventListener("click", closeCheckout);
+    document.getElementById("checkoutBackdrop").addEventListener("click", closeCheckout);
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && !checkoutModal.classList.contains("hidden")) closeCheckout();
+    });
+    document.getElementById("checkoutForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const form = e.currentTarget;
+      if (!form.reportValidity() || cart.length === 0) return;
+      const fields = ['orderName','orderPhone','orderAddress','orderCity','orderPin','orderNotes'];
+      const [name, phone, address, city, pin, notes] = fields.map(id => document.getElementById(id).value.trim());
+      const phoneDigits = phone.replace(/\D/g, '');
+      if (!(phoneDigits.length === 10 || (phoneDigits.length === 12 && phoneDigits.startsWith('91')))) {
+        document.getElementById('orderPhone').setCustomValidity('Enter a valid 10-digit Indian mobile number');
+        document.getElementById('orderPhone').reportValidity();
+        return;
+      }
+      const t = cartTotals();
+      const itemLines = cart.map(item => {
+        const p = products.find(product => product.id === item.id);
+        return `• #{p.name} (#{p.size}) x #{item.qty} = ₹#{(p.price * item.qty).toLocaleString('en-IN')}`;
+      });
+      const message = [
+        "Hello BENU'S NATURALS, I would like to enquire about this order:",
+        '', ...itemLines, '',
+        `Subtotal: ₹#{t.subtotal.toLocaleString('en-IN')}`,
+        ...(promoDiscount ? [`Promo BENU15 (15%): -₹#{t.discount.toLocaleString('en-IN')}`] : []),
+        `Estimated product total: ₹#{t.total.toLocaleString('en-IN')}`,
+        '', `Name: #{name}`, `Phone: #{phone}`, `Address: #{address}`, `City: #{city}`, `PIN: #{pin}`,
+        ...(notes ? [`Notes: #{notes}`] : []), '',
+        'Please confirm availability, any delivery charges, final payable amount and payment instructions. This is an enquiry, not a confirmed or paid order.'
+      ].join('\n');
+      const url = `https://wa.me/919072075455?text=#{encodeURIComponent(message)}`;
+      window.location.href = url;
+    });
+    document.getElementById('orderPhone').addEventListener('input', e => e.target.setCustomValidity(''));
 
     // Wishlist Functions
     function toggleWishlist(productId) {
@@ -140,6 +185,7 @@
         badge.classList.add("hidden");
       }
 
+      persistShoppingState();
       if (wishlist.length === 0) {
         container.innerHTML = `<p class="text-center py-12 font-serif text-xl text-umber/75">No saved botanicals yet.</p>`;
       } else {
@@ -152,7 +198,7 @@
                 <p class="text-xs text-umber/70">₹${p.price.toLocaleString('en-IN')} • ${p.size}</p>
               </div>
               <div class="flex items-center gap-2">
-                <button onclick="addToBag(${p.id}); closeWishlistDrawer(); openCartDrawer();" class="px-3.5 py-2 rounded-full bg-umber text-ivory text-[10px] uppercase tracking-widest">Move to Bag</button>
+                <button onclick="addToBag(${p.id}); toggleWishlist(${p.id}); closeWishlistDrawer(); openCartDrawer();" class="px-3.5 py-2 rounded-full bg-umber text-ivory text-[10px] uppercase tracking-widest">Move to Bag</button>
                 <button onclick="toggleWishlist(${p.id})" class="p-1.5 text-umber/60 hover:text-umber">✕</button>
               </div>
             </div>
@@ -206,6 +252,7 @@
     }
 
     // Initialize App
+    restoreShoppingState();
     renderProducts();
     updateCartUI();
     updateWishlistUI();
