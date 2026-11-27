@@ -15,8 +15,8 @@
         badge: "Bestseller",
         vesselType: "dropper",
         accentColor: "#C59B76",
-        description: "A golden, fast-absorbing facial nectar infused for 45 days with hand-harvested Kashmiri saffron threads and organic Andean rosehip oil to visibly brighten and even complexion.",
-        ingredients: "Rosa Canina (Organic Rosehip) Seed Oil*, Crocus Sativus (Kashmiri Saffron) Stigma*, Simmondsia Chinensis (Jojoba) Oil*, Punica Granatum (Pomegranate) Seed Oil*, Tocopherol (Natural Vitamin E). *Certified Organic",
+        description: "A golden, fast-absorbing facial nectar infused for 45 days with hand-harvested Kashmiri saffron threads and Andean rosehip oil to visibly brighten and even complexion.",
+        ingredients: "Rosa Canina (Rosehip) Seed Oil*, Crocus Sativus (Kashmiri Saffron) Stigma*, Simmondsia Chinensis (Jojoba) Oil*, Punica Granatum (Pomegranate) Seed Oil*, Tocopherol (Natural Vitamin E). ",
         ritual: "Warm 3–4 drops between fingertips and press gently onto damp skin morning and evening."
       },
       {
@@ -102,7 +102,7 @@
       {
         id: 7,
         name: "Kasturi Manjal & Sandalwood Botanical Soap",
-        category: "Organic Soaps",
+        category: "Naturals Soaps",
         subtitle: "Kerala Wild Turmeric • Sandalwood",
         price: 379,
         priceIndicative: true,
@@ -120,7 +120,7 @@
       {
         id: 8,
         name: "Neem & Tulsi Botanical Soap",
-        category: "Organic Soaps",
+        category: "Naturals Soaps",
         subtitle: "Neem Leaf • Sacred Tulsi",
         price: 349,
         priceIndicative: true,
@@ -138,7 +138,7 @@
       {
         id: 9,
         name: "Ramacham Vetiver & Green Gram Soap",
-        category: "Organic Soaps",
+        category: "Naturals Soaps",
         subtitle: "Ramacham Root • Cherupayar",
         price: 399,
         priceIndicative: true,
@@ -156,7 +156,7 @@
       {
         id: 10,
         name: "Virgin Coconut & Nalpamara Herbal Soap",
-        category: "Organic Soaps",
+        category: "Naturals Soaps",
         subtitle: "Virgin Coconut • Nalpamara",
         price: 399,
         priceIndicative: true,
@@ -174,7 +174,7 @@
       {
         id: 11,
         name: "Aloe Vera & Cucumber Botanical Soap",
-        category: "Organic Soaps",
+        category: "Naturals Soaps",
         subtitle: "Aloe Vera • Fresh Cucumber",
         price: 329,
         priceIndicative: true,
@@ -192,7 +192,7 @@
       {
         id: 12,
         name: "Damask Rose & Sandalwood Botanical Soap",
-        category: "Organic Soaps",
+        category: "Naturals Soaps",
         subtitle: "Rose Petals • Sandalwood",
         price: 379,
         priceIndicative: true,
