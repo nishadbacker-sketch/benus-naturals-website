@@ -117,7 +117,7 @@
       if (cart.length === 0) { showToast("Your bag is currently empty"); return; }
       const t = cartTotals();
       document.getElementById("checkoutSummary").textContent =
-        `Items: #{cart.reduce((n, item) => n + item.qty, 0)} • Estimated product total: ₹#{t.total.toLocaleString('en-IN')}#{promoDiscount ? ' (BENU15 applied)' : ''}`;
+        `Items: ${cart.reduce((n, item) => n + item.qty, 0)} • Estimated product total: ₹${t.total.toLocaleString('en-IN')}${promoDiscount ? ' (BENU15 applied)' : ''}`;
       closeCartDrawer();
       checkoutModal.classList.remove("hidden");
       document.getElementById("orderName").focus();
@@ -143,19 +143,19 @@
       const t = cartTotals();
       const itemLines = cart.map(item => {
         const p = products.find(product => product.id === item.id);
-        return `• #{p.name} (#{p.size}) x #{item.qty} = ₹#{(p.price * item.qty).toLocaleString('en-IN')}`;
+        return `• ${p.name} (${p.size}) x ${item.qty} = ₹${(p.price * item.qty).toLocaleString('en-IN')}`;
       });
       const message = [
         "Hello BENU'S NATURALS, I would like to enquire about this order:",
         '', ...itemLines, '',
-        `Subtotal: ₹#{t.subtotal.toLocaleString('en-IN')}`,
-        ...(promoDiscount ? [`Promo BENU15 (15%): -₹#{t.discount.toLocaleString('en-IN')}`] : []),
-        `Estimated product total: ₹#{t.total.toLocaleString('en-IN')}`,
-        '', `Name: #{name}`, `Phone: #{phone}`, `Address: #{address}`, `City: #{city}`, `PIN: #{pin}`,
-        ...(notes ? [`Notes: #{notes}`] : []), '',
+        `Subtotal: ₹${t.subtotal.toLocaleString('en-IN')}`,
+        ...(promoDiscount ? [`Promo BENU15 (15%): -₹${t.discount.toLocaleString('en-IN')}`] : []),
+        `Estimated product total: ₹${t.total.toLocaleString('en-IN')}`,
+        '', `Name: ${name}`, `Phone: ${phone}`, `Address: ${address}`, `City: ${city}`, `PIN: ${pin}`,
+        ...(notes ? [`Notes: ${notes}`] : []), '',
         'Please confirm availability, any delivery charges, final payable amount and payment instructions. This is an enquiry, not a confirmed or paid order.'
       ].join('\n');
-      const url = `https://wa.me/919072075455?text=#{encodeURIComponent(message)}`;
+      const url = `https://wa.me/919072075455?text=${encodeURIComponent(message)}`;
       window.location.href = url;
     });
     document.getElementById('orderPhone').addEventListener('input', e => e.target.setCustomValidity(''));
