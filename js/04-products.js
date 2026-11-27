@@ -72,7 +72,7 @@
       // Also render the dedicated Kerala soap collection, independently of the active filter.
       const soapGrid = document.getElementById("organicSoapGrid");
       if (soapGrid) {
-        soapGrid.innerHTML = products.filter(p => p.category === "Organic Soaps")
+        soapGrid.innerHTML = products.filter(p => p.category === "Naturals Soaps")
           .map(renderProductCard).join("");
       }
 
