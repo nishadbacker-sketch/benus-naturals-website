@@ -5,6 +5,7 @@ on:
     paths:
       - 'js/**'
       - 'tools/build_inline_catalog.py'
+      - '.github/workflows/rebuild-storefront.yml'
   workflow_dispatch:
 permissions:
   contents: write
