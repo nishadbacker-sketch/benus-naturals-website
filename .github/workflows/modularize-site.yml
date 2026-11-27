@@ -1,0 +1,43 @@
+name: Modularize BENU'S NATURALS storefront
+on:
+  push:
+    paths:
+      - '.github/workflows/modularize-site.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  refactor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Safely separate inline assets and scripts
+        run: python3 tools/modularize_site.py
+      - name: Check JavaScript syntax
+        run: |
+          for f in js/*.js; do node --check "$f"; done
+      - name: Verify generated file structure
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path("index.html").read_text()
+          assert "js/01-catalog.js" in s
+          assert "js/08-shopping.js" in s
+          assert "css/style.css" in s
+          assert "assets/brand-1.png" in s
+          assert not "data:image/png;base64," in s
+          assert Path("assets/brand-1.png").stat().st_size>100000
+          assert Path("js/08-shopping.js").stat().st_size>1000
+          print("Verified modularized page")
+          PY
+      - name: Publish modular website as one atomic commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html css/ js/ assets/
+          if ! git diff --cached --quiet; then
+            git commit -m "Modularize storefront assets and scripts without visual changes"
+            git push origin HEAD:main
+          fi
