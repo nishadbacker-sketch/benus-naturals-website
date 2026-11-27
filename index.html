@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="antialiased selection:bg-blush selection:text-espresso">
-  <!-- One-time prelaunch notice: dismissed visitors are not interrupted again on this browser. -->
+  <!-- Prelaunch notice shown on every fresh page load and browser refresh. -->
   <div id="maintenanceWelcomeModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="maintenanceWelcomeTitle" aria-describedby="maintenanceWelcomeDescription">
     <div class="absolute inset-0 bg-espresso/70 backdrop-blur-sm" aria-hidden="true"></div>
     <div class="relative w-full max-w-md rounded-3xl border border-umber/15 bg-ivory p-7 sm:p-10 text-center shadow-2xl">
@@ -33,27 +33,13 @@
   </div>
   <script>
     (function () {
-      var storageKey = "benus_maintenance_notice_seen_v1";
       var modal = document.getElementById("maintenanceWelcomeModal");
       var dismiss = document.getElementById("maintenanceWelcomeDismiss");
-      var previousFocus = null;
-      var previouslySeen = false;
-      try {
-        previouslySeen = window.localStorage.getItem(storageKey) === "1";
-      } catch (error) {
-        // Storage may be disabled in private browsing; allow the notice to show.
-      }
-      if (previouslySeen) return;
-      previousFocus = document.activeElement;
+      var previousFocus = document.activeElement;
       modal.classList.remove("hidden");
       modal.classList.add("flex");
       dismiss.focus();
       function closeNotice() {
-        try {
-          window.localStorage.setItem(storageKey, "1");
-        } catch (error) {
-          // The notice is still dismissible without storage.
-        }
         modal.classList.add("hidden");
         modal.classList.remove("flex");
         if (previousFocus && previousFocus.focus) previousFocus.focus();
