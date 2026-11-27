@@ -105,10 +105,10 @@
       document.getElementById("giftProgressBar").style.width = `${pct}%`;
       const giftText = document.getElementById("giftThresholdText");
       if (subtotal >= threshold) {
-        giftText.innerHTML = `✦ Complimentary <strong>Organic Elixir Sample Trio</strong> unlocked!`;
+        giftText.innerHTML = `✦ Complimentary <strong>Naturals Elixir Sample Trio</strong> unlocked!`;
       } else {
         const diff = threshold - subtotal;
-        giftText.innerHTML = `Add <strong>₹${diff.toLocaleString('en-IN')}</strong> more for a complimentary Organic Sample Trio`;
+        giftText.innerHTML = `Add <strong>₹${diff.toLocaleString('en-IN')}</strong> more for a complimentary Naturals Sample Trio`;
       }
     }
 

@@ -28,7 +28,7 @@
             <p class="mt-4 text-xs sm:text-sm text-umber/85 leading-relaxed font-light">${product.description}</p>
 
             <div class="mt-5 p-4 rounded-2xl bg-blush/45 border border-umber/10">
-              <h4 class="text-[10px] uppercase tracking-[0.22em] text-umber font-semibold">${product.vesselType === "soap" ? "Proposed Botanicals — Final Ingredients Pending" : "Full Organic Ingredient List"}</h4>
+              <h4 class="text-[10px] uppercase tracking-[0.22em] text-umber font-semibold">${product.vesselType === "soap" ? "Proposed Botanicals — Final Ingredients Pending" : "Full Botanical Ingredient List"}</h4>
               <p class="text-xs text-umber/80 mt-1.5 leading-relaxed">${product.ingredients}</p>
             </div>
 
