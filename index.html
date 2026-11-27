@@ -672,14 +672,907 @@
     </div>
   </div>
 
-  <script src="js/01-catalog.js"></script>
-<script src="js/02-state.js"></script>
-<script src="js/03-vessel.js"></script>
-<script src="js/04-products.js"></script>
-<script src="js/05-filters.js"></script>
-<script src="js/06-quick-view.js"></script>
-<script src="js/07-ritual.js"></script>
-<script src="js/08-shopping.js"></script>
+  <!-- BENU storefront bundled inline so product cards render even if Hostinger blocks /js/ requests -->
+<script id="benus-inline-storefront-runtime">
+    // =========================================================================
+    // 1. PRODUCT CATALOG DATA (BENU'S NATURALS)
+    // =========================================================================
+    const originalWordmark = "assets/brand-2.png";
+    const products = [
+      {
+        id: 1,
+        name: "Saffron & Rosehip Luminescence Elixir",
+        category: "Facial Elixirs",
+        subtitle: "Kashmiri Mongra Saffron • Cold-Pressed Rosehip",
+        price: 2850,
+        size: "30 ml",
+        rating: 4.9,
+        reviews: 142,
+        badge: "Bestseller",
+        vesselType: "dropper",
+        accentColor: "#C59B76",
+        description: "A golden, fast-absorbing facial nectar infused for 45 days with hand-harvested Kashmiri saffron threads and organic Andean rosehip oil to visibly brighten and even complexion.",
+        ingredients: "Rosa Canina (Organic Rosehip) Seed Oil*, Crocus Sativus (Kashmiri Saffron) Stigma*, Simmondsia Chinensis (Jojoba) Oil*, Punica Granatum (Pomegranate) Seed Oil*, Tocopherol (Natural Vitamin E). *Certified Organic",
+        ritual: "Warm 3–4 drops between fingertips and press gently onto damp skin morning and evening."
+      },
+      {
+        id: 2,
+        name: "Sandalwood & Neroli Velvet Moisture Cream",
+        category: "Botanical Creams",
+        subtitle: "Mysore Sandalwood • Moroccan Neroli Blossom",
+        price: 2450,
+        size: "50 g",
+        rating: 4.9,
+        reviews: 98,
+        badge: "Cult Favorite",
+        vesselType: "jar",
+        accentColor: "#A97954",
+        description: "A cloud-like whipped botanical soufflé that drenches thirsty skin in lasting hydration while calming redness with pure steam-distilled sandalwood and neroli.",
+        ingredients: "Aloe Barbadensis Leaf Juice*, Santalum Album (Mysore Sandalwood) Hydrosol*, Citrus Aurantium (Neroli) Flower Oil*, Butyrospermum Parkii (Shea) Butter*, Squalane (Olive-Derived), Vegetable Glycerin*.",
+        ritual: "Massage a pearl-sized amount over face and neck after your elixir to seal in moisture."
+      },
+      {
+        id: 3,
+        name: "Wild Turmeric & Raw Honey Purifying Nectar",
+        category: "Herbal Cleansers",
+        subtitle: "Kasturi Manjal • Forest Wildflower Honey",
+        price: 1650,
+        size: "100 ml",
+        rating: 4.8,
+        reviews: 116,
+        badge: "Pure Harvest",
+        vesselType: "pump",
+        accentColor: "#B88655",
+        description: "A soap-free, pH-balanced silky cleanser formulated with non-staining wild Kasturi turmeric and raw forest honey to dissolve impurities without stripping natural lipids.",
+        ingredients: "Mel (Raw Forest Honey)*, Curcuma Aromatica (Wild Kasturi Turmeric) Root Extract*, Coco-Glucoside (Coconut Derived), Matricaria Recutita (Chamomile) Flower Water*, Calendula Officinalis*.",
+        ritual: "Massage onto dry or damp skin for 60 seconds, then rinse with lukewarm water."
+      },
+      {
+        id: 4,
+        name: "Bakuchiol & Cold-Pressed Moringa Renewal Oil",
+        category: "Sacred Oils",
+        subtitle: "1% Pure Babchi Bio-Retinol • Himalayan Moringa",
+        price: 3150,
+        size: "30 ml",
+        rating: 5.0,
+        reviews: 84,
+        badge: "Age-Defying",
+        vesselType: "dropper",
+        accentColor: "#8E6445",
+        description: "Clinically revered plant-derived Bakuchiol suspended in nutrient-dense Himalayan Moringa oil to refine fine lines, boost firmness, and restore youthful bounce gently.",
+        ingredients: "Moringa Oleifera Seed Oil*, Bakuchiol (1% Psoralea Corylifolia Extract), Hippophae Rhamnoides (Sea Buckthorn) Berry Oil*, Boswellia Serrata (Frankincense) Resin Oil*.",
+        ritual: "Apply 4 drops nightly as the final step of your evening skincare ritual."
+      },
+      {
+        id: 5,
+        name: "Damask Rose & Vetiver Cooling Hydrosol Mist",
+        category: "Herbal Cleansers",
+        subtitle: "Kannauj Damask Rose • Wild Earth Vetiver",
+        price: 1450,
+        size: "100 ml",
+        rating: 4.8,
+        reviews: 163,
+        badge: "Refreshing",
+        vesselType: "mist",
+        accentColor: "#CFA382",
+        description: "First-distillation steam hydrosol from heritage Kannauj roses paired with cooling vetiver roots to tone, balance skin pH, and awaken dull skin throughout the day.",
+        ingredients: "100% Pure Steam-Distilled Rosa Damascena (Kannauj Rose) Flower Water*, Vetiveria Zizanoides (Vetiver) Root Distillate*. Zero alcohol or added fragrance.",
+        ritual: "Mist generously over cleansed skin before applying facial oils or anytime for instant calm."
+      },
+      {
+        id: 6,
+        name: "Shea & Kokum Butter Restorative Night Balm",
+        category: "Botanical Creams",
+        subtitle: "Western Ghats Kokum • Unrefined Ivory Shea",
+        price: 2650,
+        size: "50 g",
+        rating: 4.9,
+        reviews: 77,
+        badge: "Overnight Repair",
+        vesselType: "jar",
+        accentColor: "#7C5A43",
+        description: "A rich, cocooning overnight recovery balm that melts upon contact to repair compromised skin barriers and awaken velvety, dewy skin by morning.",
+        ingredients: "Garcinia Indica (Kokum) Seed Butter*, Butyrospermum Parkii (Unrefined Shea) Butter*, Prunus Amygdalus Dulcis (Sweet Almond) Oil*, Jasminum Grandiflorum (Jasmine) Wax*.",
+        ritual: "Warm a small scoop between palms until translucent and press onto dry areas before sleep."
+      },
+      {
+        id: 7,
+        name: "Kasturi Manjal & Sandalwood Botanical Soap",
+        category: "Organic Soaps",
+        subtitle: "Kerala Wild Turmeric • Sandalwood",
+        price: 379,
+        priceIndicative: true,
+        availableForEnquiry: true,
+        size: "100 g (provisional)",
+        rating: null,
+        reviews: 0,
+        badge: "Kerala Inspired",
+        vesselType: "soap",
+        accentColor: "#D2A65A",
+        description: "A warm golden botanical soap concept inspired by Kerala's traditional Kasturi Manjal and sandalwood bathing rituals.",
+        ingredients: "Proposed botanicals: Kasturi Manjal (wild turmeric) and sandalwood. Complete INCI formulation, certification status and manufacturing details to be confirmed.",
+        ritual: "Lather gently on wet hands or body and rinse thoroughly. Let the bar dry between uses."
+      },
+      {
+        id: 8,
+        name: "Neem & Tulsi Botanical Soap",
+        category: "Organic Soaps",
+        subtitle: "Neem Leaf • Sacred Tulsi",
+        price: 349,
+        priceIndicative: true,
+        availableForEnquiry: true,
+        size: "100 g (provisional)",
+        rating: null,
+        reviews: 0,
+        badge: "Kerala Inspired",
+        vesselType: "soap",
+        accentColor: "#83976A",
+        description: "An earthy green cleansing-bar concept inspired by the neem and tulsi botanicals widely used in Kerala herbal care.",
+        ingredients: "Proposed botanicals: neem and tulsi. Complete INCI formulation, certification status and manufacturing details to be confirmed.",
+        ritual: "Work into a soft lather, rinse fully and store on a draining soap tray."
+      },
+      {
+        id: 9,
+        name: "Ramacham Vetiver & Green Gram Soap",
+        category: "Organic Soaps",
+        subtitle: "Ramacham Root • Cherupayar",
+        price: 399,
+        priceIndicative: true,
+        availableForEnquiry: true,
+        size: "100 g (provisional)",
+        rating: null,
+        reviews: 0,
+        badge: "Kerala Inspired",
+        vesselType: "soap",
+        accentColor: "#AD9671",
+        description: "A Kerala-inspired bath-bar concept pairing aromatic Ramacham (vetiver) with traditional green gram.",
+        ingredients: "Proposed botanicals: vetiver (Ramacham) and green gram (Cherupayar). Complete INCI formulation, certification status and manufacturing details to be confirmed.",
+        ritual: "Lather with water, cleanse gently, rinse and keep the bar dry after use."
+      },
+      {
+        id: 10,
+        name: "Virgin Coconut & Nalpamara Herbal Soap",
+        category: "Organic Soaps",
+        subtitle: "Virgin Coconut • Nalpamara",
+        price: 399,
+        priceIndicative: true,
+        availableForEnquiry: true,
+        size: "100 g (provisional)",
+        rating: null,
+        reviews: 0,
+        badge: "Kerala Inspired",
+        vesselType: "soap",
+        accentColor: "#B5A578",
+        description: "A heritage botanical bathing-bar concept inspired by Kerala's coconut-oil soapmaking and Nalpamara herbal traditions.",
+        ingredients: "Proposed botanicals: virgin coconut oil and Nalpamara herbal blend. Complete INCI formulation, certification status and manufacturing details to be confirmed.",
+        ritual: "Use on wet skin, rinse well, and leave to air-dry on a soap dish."
+      },
+      {
+        id: 11,
+        name: "Aloe Vera & Cucumber Botanical Soap",
+        category: "Organic Soaps",
+        subtitle: "Aloe Vera • Fresh Cucumber",
+        price: 329,
+        priceIndicative: true,
+        availableForEnquiry: true,
+        size: "100 g (provisional)",
+        rating: null,
+        reviews: 0,
+        badge: "Kerala Inspired",
+        vesselType: "soap",
+        accentColor: "#A3BCAB",
+        description: "A fresh green botanical bath-bar concept combining aloe vera and cucumber notes for a clean, light daily ritual.",
+        ingredients: "Proposed botanicals: aloe vera and cucumber. Complete INCI formulation, certification status and manufacturing details to be confirmed.",
+        ritual: "Create a light lather on wet hands or body, rinse thoroughly, and drain after use."
+      },
+      {
+        id: 12,
+        name: "Damask Rose & Sandalwood Botanical Soap",
+        category: "Organic Soaps",
+        subtitle: "Rose Petals • Sandalwood",
+        price: 379,
+        priceIndicative: true,
+        availableForEnquiry: true,
+        size: "100 g (provisional)",
+        rating: null,
+        reviews: 0,
+        badge: "Kerala Inspired",
+        vesselType: "soap",
+        accentColor: "#C79B91",
+        description: "A floral, woody soap-bar concept inspired by rose and sandalwood combinations in premium botanical care.",
+        ingredients: "Proposed botanicals: rose and sandalwood. Complete INCI formulation, certification status and manufacturing details to be confirmed.",
+        ritual: "Lather gently on wet skin, rinse thoroughly and keep the bar dry between uses."
+      }
+    ];
+
+
+;
+    // =========================================================================
+    // 2. APPLICATION STATE
+    // =========================================================================
+    let activeCategory = "All";
+    let searchQuery = "";
+    let wishlist = [];
+    let cart = [];
+    let promoDiscount = 0;
+    const BAG_STORAGE_KEY = 'benus_cart_v1';
+    const WISH_STORAGE_KEY = 'benus_wishlist_v1';
+    const MAX_ITEM_QTY = 99;
+    function restoreShoppingState() {
+      try {
+        const savedCart = JSON.parse(localStorage.getItem(BAG_STORAGE_KEY) || '[]');
+        const savedWishlist = JSON.parse(localStorage.getItem(WISH_STORAGE_KEY) || '[]');
+        if (Array.isArray(savedCart)) {
+          cart = savedCart.filter(item => item && products.some(p => p.id === item.id) && Number.isInteger(item.qty) && item.qty > 0)
+            .map(item => ({ id: item.id, qty: Math.min(MAX_ITEM_QTY, item.qty) }));
+          cart = [...new Map(cart.map(item => [item.id, item])).values()];
+        }
+        if (Array.isArray(savedWishlist)) wishlist = [...new Set(savedWishlist.filter(id => products.some(p => p.id === id)))];
+      } catch (e) { cart = []; wishlist = []; }
+    }
+    function persistShoppingState() {
+      try { localStorage.setItem(BAG_STORAGE_KEY, JSON.stringify(cart)); localStorage.setItem(WISH_STORAGE_KEY, JSON.stringify(wishlist)); } catch(e) { /* storage may be blocked */ }
+    }
+    function cartTotals() {
+      const subtotal = cart.reduce((sum, item) => {
+        const p = products.find(product => product.id === item.id);
+        return sum + (p ? p.price * item.qty : 0);
+      }, 0);
+      const discount = Math.round(subtotal * promoDiscount);
+      return { subtotal, discount, total: subtotal - discount };
+    }
+    let selectedSkinType = "";
+    let selectedSkinConcern = "";
+    let currentRecommendedIds = [3, 1, 2];
+
+
+;
+    // =========================================================================
+    // 3. CUSTOM APOTHECARY VESSEL SVG GENERATOR (Matches Brand Aesthetic)
+    // =========================================================================
+    function renderVesselIllustration(product) {
+      const { vesselType, accentColor, name } = product;
+      if (vesselType === "soap") {
+        // Brand-matched illustrated bath bar; no product photograph or certification implied.
+        return `
+          <svg viewBox="0 0 180 210" class="w-40 h-44 mx-auto drop-shadow-md transition-transform duration-500 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${name} soap bar illustration">
+            <ellipse cx="91" cy="181" rx="62" ry="9" fill="#7C5A43" fill-opacity="0.09" />
+            <rect x="30" y="45" width="120" height="127" rx="23" fill="${accentColor}" stroke="#7C5A43" stroke-width="1.2"/>
+            <rect x="37" y="52" width="106" height="113" rx="18" fill="#F8F4ED" fill-opacity="0.22" stroke="#F8F4ED" stroke-opacity="0.45"/>
+            <rect x="44" y="85" width="92" height="61" rx="5" fill="#F8F4ED" stroke="#C59B76" stroke-width="1.3"/>
+            <image href="${originalWordmark}" x="51" y="90" width="78" height="33" preserveAspectRatio="xMidYMid meet" />
+            <line x1="60" y1="124" x2="120" y2="124" stroke="#C59B76" stroke-width="0.8"/>
+            <text x="90" y="135" text-anchor="middle" fill="#7C5A43" font-family="Cormorant Garamond, serif" font-style="italic" font-size="9">Botanical Soap</text>
+            <text x="90" y="141.5" text-anchor="middle" fill="#A97954" font-family="Montserrat, sans-serif" font-size="4.6" letter-spacing="0.75">100 G · CONCEPT</text>
+          </svg>
+        `;
+      }
+      if (vesselType === "dropper") {
+        return `
+          <svg viewBox="0 0 180 210" class="w-40 h-44 mx-auto drop-shadow-md transition-transform duration-500 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Dropper Bulb -->
+            <path d="M81 24C81 17 99 17 99 24V44H81V24Z" fill="#5A3E2B"/>
+            <!-- Metallic Copper Collar -->
+            <rect x="76" y="44" width="28" height="12" rx="2" fill="url(#copperCollar)"/>
+            <!-- Glass Shoulder & Bottle -->
+            <path d="M62 72C62 63 72 56 80 56H100C108 56 118 63 118 72V178C118 186 112 192 104 192H76C68 192 62 186 62 178V72Z" fill="#F2E4D5" stroke="#7C5A43" stroke-width="1.4"/>
+            <!-- Golden Elixir Liquid Fill -->
+            <path d="M64 95H116V177C116 184 110 190 103 190H77C70 190 64 184 64 177V95Z" fill="${accentColor}" fill-opacity="0.32"/>
+            <!-- Cream Apothecary Label -->
+            <rect x="67" y="96" width="46" height="72" rx="4" fill="#F8F4ED" stroke="#C59B76" stroke-width="0.9"/>
+            <image href="${originalWordmark}" x="70" y="101" width="40" height="29" preserveAspectRatio="xMidYMid meet" />
+            <line x1="76" y1="134" x2="104" y2="134" stroke="#C59B76" stroke-width="0.7"/>
+            <text x="90" y="146" text-anchor="middle" fill="#7C5A43" font-family="Cormorant Garamond, serif" font-style="italic" font-size="7.5">Pure Elixir</text>
+            <text x="90" y="159" text-anchor="middle" fill="#A97954" font-family="Montserrat, sans-serif" font-size="4.5" letter-spacing="1">30 ML • ORGANIC</text>
+            <defs>
+              <linearGradient id="copperCollar" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#8C6244"/>
+                <stop offset="50%" stop-color="#DFB892"/>
+                <stop offset="100%" stop-color="#7C5A43"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        `;
+      } else if (vesselType === "jar") {
+        return `
+          <svg viewBox="0 0 180 210" class="w-40 h-44 mx-auto drop-shadow-md transition-transform duration-500 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Bronze Lid -->
+            <rect x="48" y="68" width="84" height="18" rx="5" fill="url(#jarLid)"/>
+            <rect x="52" y="86" width="76" height="4" fill="#5A3E2B"/>
+            <!-- Frosted Cream Glass Jar -->
+            <rect x="46" y="90" width="88" height="94" rx="14" fill="#F4E7DA" stroke="#7C5A43" stroke-width="1.4"/>
+            <!-- Label -->
+            <rect x="54" y="106" width="72" height="62" rx="5" fill="#F8F4ED" stroke="#C59B76" stroke-width="0.9"/>
+            <image href="${originalWordmark}" x="58" y="110" width="64" height="27" preserveAspectRatio="xMidYMid meet" />
+            <text x="90" y="148" text-anchor="middle" fill="#7C5A43" font-family="Cormorant Garamond, serif" font-style="italic" font-size="8.5">Botanical Balm</text>
+            <text x="90" y="160" text-anchor="middle" fill="#A97954" font-family="Montserrat, sans-serif" font-size="4.8" letter-spacing="1.2">50 G • COLD-PRESSED</text>
+            <defs>
+              <linearGradient id="jarLid" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#7C5A43"/>
+                <stop offset="50%" stop-color="#D4AC86"/>
+                <stop offset="100%" stop-color="#6B4B36"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        `;
+      } else {
+        return `
+          <svg viewBox="0 0 180 210" class="w-40 h-44 mx-auto drop-shadow-md transition-transform duration-500 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Mist / Pump Cap -->
+            <rect x="78" y="24" width="24" height="24" rx="4" fill="#F5E2D6" stroke="#7C5A43" stroke-width="1.2"/>
+            <rect x="74" y="48" width="32" height="10" rx="2" fill="url(#mistCollar)"/>
+            <!-- Tall Apothecary Bottle -->
+            <path d="M64 70C64 62 72 58 80 58H100C108 58 116 62 116 70V180C116 187 110 192 103 192H77C70 192 64 187 64 180V70Z" fill="#F6EBE0" stroke="#7C5A43" stroke-width="1.4"/>
+            <path d="M66 86H114V179C114 185 109 190 103 190H77C71 190 66 185 66 179V86Z" fill="${accentColor}" fill-opacity="0.24"/>
+            <!-- Label -->
+            <rect x="69" y="92" width="42" height="78" rx="4" fill="#F8F4ED" stroke="#C59B76" stroke-width="0.9"/>
+            <image href="${originalWordmark}" x="71" y="97" width="38" height="30" preserveAspectRatio="xMidYMid meet" />
+            <line x1="77" y1="133" x2="103" y2="133" stroke="#C59B76" stroke-width="0.7"/>
+            <text x="90" y="146" text-anchor="middle" fill="#7C5A43" font-family="Cormorant Garamond, serif" font-style="italic" font-size="7.5">Pure Hydrosol</text>
+            <text x="90" y="160" text-anchor="middle" fill="#A97954" font-family="Montserrat, sans-serif" font-size="4.5" letter-spacing="1">100 ML • ORGANIC</text>
+            <defs>
+              <linearGradient id="mistCollar" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#8C6244"/>
+                <stop offset="50%" stop-color="#DFB892"/>
+                <stop offset="100%" stop-color="#7C5A43"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        `;
+      }
+    }
+
+
+;
+    // =========================================================================
+    // 4. RENDER PRODUCT GRID & FILTERING
+    // =========================================================================
+    function renderProductCard(product) {
+        const isWished = wishlist.includes(product.id);
+        return `
+          <article class="group bg-cream/65 rounded-3xl border border-umber/12 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-luxury hover:border-bronze/40">
+            <!-- Top Visual Stage -->
+            <div class="relative bg-gradient-to-b from-blush/50 to-ivory/90 pt-7 pb-5 px-6">
+              <div class="flex items-center justify-between">
+                <span class="px-3 py-1 rounded-full bg-ivory/90 border border-umber/15 text-[10px] tracking-[0.2em] uppercase text-umber font-medium">
+                  ${product.badge}
+                </span>
+                <button onclick="toggleWishlist(${product.id})" aria-label="Save to Wishlist" class="p-2 rounded-full bg-ivory/90 hover:bg-blush text-umber transition shadow-xs">
+                  <svg class="w-4 h-4 ${isWished ? 'fill-bronze text-bronze' : ''}" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                  </svg>
+                </button>
+              </div>
+
+              <div onclick="openQuickView(${product.id})" class="cursor-pointer mt-2">
+                ${renderVesselIllustration(product)}
+              </div>
+
+              <button onclick="openQuickView(${product.id})" class="w-full mt-2 py-2 rounded-full bg-ivory/80 hover:bg-ivory text-[11px] tracking-[0.2em] uppercase text-umber font-medium transition opacity-90 group-hover:opacity-100">
+                Quick View & Ingredients
+              </button>
+            </div>
+
+            <!-- Product Info -->
+            <div class="p-6 flex-1 flex flex-col justify-between bg-ivory/75">
+              <div>
+                <div class="flex items-center justify-between text-[11px] text-bronze">
+                  <span class="uppercase tracking-[0.18em] font-medium">${product.category}</span>
+                  <span>${product.rating == null ? "New • Details pending" : `★ ${product.rating} (${product.reviews})`}</span>
+                </div>
+                <h3 onclick="openQuickView(${product.id})" class="font-serif text-2xl text-umber mt-1.5 leading-snug cursor-pointer hover:text-bronze transition">
+                  ${product.name}
+                </h3>
+                <p class="text-xs text-umber/70 mt-1.5 font-light">${product.subtitle}</p>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-umber/10 flex items-center justify-between gap-3">
+                <div>
+                  <span class="font-serif text-xl font-semibold text-umber">${product.priceIndicative ? "Indicative " : ""}₹${product.price.toLocaleString('en-IN')}</span>
+                  <span class="text-[11px] text-umber/60 ml-1">/ ${product.size}</span>
+                </div>
+                <button onclick="addToBag(${product.id})" class="px-5 py-2.5 rounded-full bg-umber text-ivory text-[11px] tracking-[0.18em] uppercase font-medium hover:bg-espresso transition shadow-xs">
+                  ${product.priceIndicative ? "Enquire / Add to Bag" : "Add to Bag"}
+                </button>
+              </div>
+            </div>
+          </article>
+        `;
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById("productGrid");
+      const emptyState = document.getElementById("emptySearchState");
+
+      const filtered = products.filter(p => {
+        const matchesCat = activeCategory === "All" || p.category === activeCategory;
+        const q = searchQuery.toLowerCase().trim();
+        const matchesSearch = !q ||
+          p.name.toLowerCase().includes(q) ||
+          p.subtitle.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q) ||
+          p.ingredients.toLowerCase().includes(q);
+        return matchesCat && matchesSearch;
+      });
+
+      // Also render the dedicated Kerala soap collection, independently of the active filter.
+      const soapGrid = document.getElementById("organicSoapGrid");
+      if (soapGrid) {
+        soapGrid.innerHTML = products.filter(p => p.category === "Organic Soaps")
+          .map(renderProductCard).join("");
+      }
+
+      if (filtered.length === 0) {
+        grid.innerHTML = "";
+        emptyState.classList.remove("hidden");
+        return;
+      }
+
+      emptyState.classList.add("hidden");
+      grid.innerHTML = filtered.map(renderProductCard).join("");
+    }
+
+
+;
+    // =========================================================================
+    // 5. CATEGORY & SEARCH INTERACTIONS
+    // =========================================================================
+    document.querySelectorAll(".category-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".category-btn").forEach(b => {
+          b.classList.remove("bg-umber", "text-ivory", "shadow-soft");
+          b.classList.add("bg-cream", "text-umber");
+        });
+        btn.classList.remove("bg-cream", "text-umber");
+        btn.classList.add("bg-umber", "text-ivory", "shadow-soft");
+        activeCategory = btn.dataset.category;
+        renderProducts();
+      });
+    });
+
+    const searchToggleBtn = document.getElementById("searchToggleBtn");
+    const searchBarContainer = document.getElementById("searchBarContainer");
+    const productSearchInput = document.getElementById("productSearchInput");
+    const clearSearchBtn = document.getElementById("clearSearchBtn");
+
+    searchToggleBtn.addEventListener("click", () => {
+      searchBarContainer.classList.toggle("hidden");
+      if (!searchBarContainer.classList.contains("hidden")) {
+        productSearchInput.focus();
+      }
+    });
+
+    productSearchInput.addEventListener("input", (e) => {
+      searchQuery = e.target.value;
+      renderProducts();
+    });
+
+    clearSearchBtn.addEventListener("click", () => {
+      searchQuery = "";
+      productSearchInput.value = "";
+      renderProducts();
+    });
+
+    function resetFilters() {
+      activeCategory = "All";
+      searchQuery = "";
+      productSearchInput.value = "";
+      document.querySelectorAll(".category-btn").forEach(b => {
+        b.classList.remove("bg-umber", "text-ivory", "shadow-soft");
+        b.classList.add("bg-cream", "text-umber");
+        if (b.dataset.category === "All") {
+          b.classList.remove("bg-cream", "text-umber");
+          b.classList.add("bg-umber", "text-ivory", "shadow-soft");
+        }
+      });
+      renderProducts();
+    }
+
+
+;
+    // =========================================================================
+    // 6. QUICK VIEW MODAL
+    // =========================================================================
+    function openQuickView(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+
+      const modal = document.getElementById("quickViewModal");
+      const content = document.getElementById("quickViewContent");
+
+      content.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          <div class="md:col-span-5 bg-gradient-to-b from-blush/60 to-cream rounded-2xl p-6 border border-umber/10 text-center">
+            <span class="inline-block px-3 py-1 rounded-full bg-ivory text-[10px] tracking-[0.2em] uppercase text-umber mb-2">${product.badge}</span>
+            ${renderVesselIllustration(product)}
+            <p class="text-[11px] uppercase tracking-[0.2em] text-umber/70 mt-3">${product.size}${product.vesselType === "soap" ? " • Illustrated Soap Concept" : " • UV-Protected Glass"}</p>
+          </div>
+          <div class="md:col-span-7">
+            <span class="text-[11px] uppercase tracking-[0.22em] text-bronze font-semibold">${product.category}</span>
+            <h3 class="font-serif text-3xl text-umber mt-1 leading-tight">${product.name}</h3>
+            <p class="text-xs text-umber/75 mt-1">${product.subtitle}</p>
+            
+            <div class="mt-4 flex items-center gap-4">
+              <span class="font-serif text-2xl font-semibold text-umber">${product.priceIndicative ? "Indicative " : ""}₹${product.price.toLocaleString('en-IN')}</span>
+              <span class="text-xs text-bronze">${product.rating == null ? "New concept • Reviews not yet available" : `★ ${product.rating} (${product.reviews} Verified Rituals)`}</span>
+            </div>
+
+            <p class="mt-4 text-xs sm:text-sm text-umber/85 leading-relaxed font-light">${product.description}</p>
+
+            <div class="mt-5 p-4 rounded-2xl bg-blush/45 border border-umber/10">
+              <h4 class="text-[10px] uppercase tracking-[0.22em] text-umber font-semibold">${product.vesselType === "soap" ? "Proposed Botanicals — Final Ingredients Pending" : "Full Organic Ingredient List"}</h4>
+              <p class="text-xs text-umber/80 mt-1.5 leading-relaxed">${product.ingredients}</p>
+            </div>
+
+            <div class="mt-4">
+              <h4 class="text-[10px] uppercase tracking-[0.22em] text-umber font-semibold">Application Ritual</h4>
+              <p class="text-xs text-umber/80 mt-1 leading-relaxed italic font-serif text-base">${product.ritual}</p>
+            </div>
+
+            <div class="mt-6 flex flex-col sm:flex-row gap-3">
+              <button onclick="addToBag(${product.id}); closeQuickView();" class="flex-1 py-3.5 px-6 rounded-full bg-umber text-ivory text-xs tracking-[0.2em] uppercase font-medium hover:bg-espresso transition shadow-soft">
+                ${product.priceIndicative ? "Enquire / Add to Bag" : `Add to Bag — ₹${product.price.toLocaleString('en-IN')}`}
+              </button>
+              <button onclick="toggleWishlist(${product.id})" class="py-3.5 px-5 rounded-full border border-umber/25 text-umber text-xs tracking-[0.18em] uppercase hover:bg-blush transition">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+
+    function closeQuickView() {
+      const modal = document.getElementById("quickViewModal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+    document.getElementById("quickViewBackdrop").addEventListener("click", closeQuickView);
+
+
+;
+    // =========================================================================
+    // 7. 3-STEP SKIN RITUAL CONSULTATION LOGIC
+    // =========================================================================
+    function goToQuizStep(step) {
+      document.querySelectorAll(".quiz-step").forEach(el => el.classList.add("hidden"));
+      document.getElementById(`quizStep${step}`).classList.remove("hidden");
+
+      [1, 2, 3].forEach(i => {
+        const dot = document.getElementById(`stepDot${i}`);
+        if (i <= step) {
+          dot.classList.remove("bg-cream", "text-umber", "border", "border-umber/20");
+          dot.classList.add("bg-umber", "text-ivory");
+        } else {
+          dot.classList.add("bg-cream", "text-umber", "border", "border-umber/20");
+          dot.classList.remove("bg-umber", "text-ivory");
+        }
+      });
+    }
+
+    function selectSkinType(type) {
+      selectedSkinType = type;
+      goToQuizStep(2);
+    }
+
+    function selectSkinConcern(concern) {
+      selectedSkinConcern = concern;
+      generateRitualRecommendation();
+      goToQuizStep(3);
+    }
+
+    function generateRitualRecommendation() {
+      document.getElementById("ritualSummaryTag").textContent = `${selectedSkinType} • ${selectedSkinConcern}`;
+
+      // Tailor 3-step regimen: Step 1 Cleanse/Tone, Step 2 Treat/Elixir, Step 3 Seal/Moisture
+      if (selectedSkinConcern === "Radiance & Even Tone") {
+        currentRecommendedIds = [3, 1, 2];
+      } else if (selectedSkinConcern === "Deep Barrier Repair") {
+        currentRecommendedIds = [5, 1, 6];
+      } else {
+        currentRecommendedIds = [5, 4, 2];
+      }
+
+      const stepsLabels = ["Step I • Purify & Prep", "Step II • Potent Elixir", "Step III • Seal & Nourish"];
+      const grid = document.getElementById("recommendedRitualGrid");
+
+      grid.innerHTML = currentRecommendedIds.map((id, idx) => {
+        const p = products.find(item => item.id === id);
+        return `
+          <div class="bg-cream/70 rounded-2xl p-5 border border-umber/15 text-center flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] uppercase tracking-[0.2em] text-bronze font-semibold">${stepsLabels[idx]}</span>
+              <div class="my-3 transform scale-90">
+                ${renderVesselIllustration(p)}
+              </div>
+              <h4 class="font-serif text-xl text-umber leading-snug">${p.name}</h4>
+              <p class="text-[11px] text-umber/70 mt-1">${p.subtitle}</p>
+            </div>
+            <p class="font-serif text-lg font-semibold text-umber mt-4">₹${p.price.toLocaleString('en-IN')}</p>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function addFullRitualToBag() {
+      currentRecommendedIds.forEach(id => {
+        const existing = cart.find(item => item.id === id);
+        if (existing) {
+          existing.qty += 1;
+        } else {
+          cart.push({ id, qty: 1 });
+        }
+      });
+      updateCartUI();
+      openCartDrawer();
+      showToast("Complete 3-Step Ritual Added to Bag");
+    }
+
+
+;
+    // =========================================================================
+    // 8. SHOPPING BAG, WISHLIST & CHECKOUT SIMULATION
+    // =========================================================================
+    function addToBag(productId) {
+      const product = products.find(item => item.id === productId);
+      if (!product) return;
+      const existing = cart.find(item => item.id === productId);
+      if (existing) {
+        if (existing.qty >= MAX_ITEM_QTY) { showToast('Maximum quantity reached'); return; }
+        existing.qty += 1;
+      } else {
+        cart.push({ id: productId, qty: 1 });
+      }
+      updateCartUI();
+      const prod = products.find(p => p.id === productId);
+      showToast(`${prod.name} added to bag`);
+    }
+
+    function updateQty(productId, delta) {
+      const idx = cart.findIndex(item => item.id === productId);
+      if (idx === -1) return;
+      if (!Number.isInteger(delta)) return;
+      cart[idx].qty = Math.min(MAX_ITEM_QTY, cart[idx].qty + delta);
+      if (cart[idx].qty <= 0) {
+        cart.splice(idx, 1);
+      }
+      updateCartUI();
+    }
+
+    function applyPromoCode() {
+      const code = document.getElementById("promoInput").value.trim().toUpperCase();
+      const msg = document.getElementById("promoMessage");
+      if (code === "BENU15") {
+        promoDiscount = 0.15;
+        msg.textContent = "Code BENU15 applied — 15% Botanical Privilege unlocked.";
+        msg.classList.remove("hidden");
+        updateCartUI();
+      } else {
+        promoDiscount = 0;
+        msg.textContent = code ? "Code not recognised. Try BENU15." : "Enter a promo code to apply it.";
+        msg.classList.remove("hidden");
+        updateCartUI();
+      }
+    }
+
+    function updateCartUI() {
+      const container = document.getElementById("cartItemsContainer");
+      const badge = document.getElementById("cartCountBadge");
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      badge.textContent = totalItems;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-16">
+            <p class="font-serif text-2xl text-umber">Your apothecary bag is empty.</p>
+            <p class="text-xs text-umber/70 mt-2">Explore our cold-pressed botanical formulations to begin your ritual.</p>
+            <button onclick="closeCartDrawer()" class="mt-6 px-6 py-3 rounded-full bg-umber text-ivory text-xs tracking-[0.2em] uppercase">Explore Collection</button>
+          </div>
+        `;
+      } else {
+        container.innerHTML = cart.map(item => {
+          const p = products.find(prod => prod.id === item.id);
+          return `
+            <div class="flex items-center gap-4 bg-cream/60 p-3.5 rounded-2xl border border-umber/10">
+              <div class="w-16 h-20 bg-blush/50 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden">
+                <span class="font-serif italic text-2xl text-umber">B’N</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h4 class="font-serif text-lg text-umber leading-tight truncate">${p.name}</h4>
+                <p class="text-[11px] text-umber/65 mt-0.5">${p.size} • ₹${p.price.toLocaleString('en-IN')}</p>
+                <div class="mt-2.5 flex items-center gap-3">
+                  <div class="inline-flex items-center border border-umber/20 rounded-full bg-ivory">
+                    <button onclick="updateQty(${p.id}, -1)" class="w-7 h-7 flex items-center justify-center text-umber hover:bg-blush rounded-l-full">−</button>
+                    <span class="px-2.5 text-xs font-medium text-umber">${item.qty}</span>
+                    <button onclick="updateQty(${p.id}, 1)" class="w-7 h-7 flex items-center justify-center text-umber hover:bg-blush rounded-r-full">+</button>
+                  </div>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="font-serif text-base font-semibold text-umber">₹${(p.price * item.qty).toLocaleString('en-IN')}</span>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      const { subtotal, discount: discountAmount, total: finalTotal } = cartTotals();
+
+      document.getElementById("cartSubtotal").textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+      document.getElementById("cartTotal").textContent = `₹${finalTotal.toLocaleString('en-IN')}`;
+      document.getElementById("checkoutBtn").disabled = cart.length === 0;
+      persistShoppingState();
+
+      const discountRow = document.getElementById("discountRow");
+      if (promoDiscount > 0 && subtotal > 0) {
+        discountRow.classList.remove("hidden");
+        document.getElementById("cartDiscount").textContent = `-₹${discountAmount.toLocaleString('en-IN')}`;
+      } else {
+        discountRow.classList.add("hidden");
+      }
+
+      // Update Complimentary Gift Bar (Threshold ₹4,500)
+      const threshold = 4500;
+      const pct = Math.min(100, Math.round((subtotal / threshold) * 100));
+      document.getElementById("giftProgressBar").style.width = `${pct}%`;
+      const giftText = document.getElementById("giftThresholdText");
+      if (subtotal >= threshold) {
+        giftText.innerHTML = `✦ Complimentary <strong>Organic Elixir Sample Trio</strong> unlocked!`;
+      } else {
+        const diff = threshold - subtotal;
+        giftText.innerHTML = `Add <strong>₹${diff.toLocaleString('en-IN')}</strong> more for a complimentary Organic Sample Trio`;
+      }
+    }
+
+    const checkoutModal = document.getElementById("checkoutModal");
+    function openCheckout() {
+      if (cart.length === 0) { showToast("Your bag is currently empty"); return; }
+      const t = cartTotals();
+      document.getElementById("checkoutSummary").textContent =
+        `Items: ${cart.reduce((n, item) => n + item.qty, 0)} • Estimated product total: ₹${t.total.toLocaleString('en-IN')}${promoDiscount ? ' (BENU15 applied)' : ''}`;
+      closeCartDrawer();
+      checkoutModal.classList.remove("hidden");
+      document.getElementById("orderName").focus();
+    }
+    function closeCheckout() { checkoutModal.classList.add("hidden"); }
+    document.getElementById("closeCheckoutBtn").addEventListener("click", closeCheckout);
+    document.getElementById("checkoutBackdrop").addEventListener("click", closeCheckout);
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && !checkoutModal.classList.contains("hidden")) closeCheckout();
+    });
+    document.getElementById("checkoutForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const form = e.currentTarget;
+      if (!form.reportValidity() || cart.length === 0) return;
+      const fields = ['orderName','orderPhone','orderAddress','orderCity','orderPin','orderNotes'];
+      const [name, phone, address, city, pin, notes] = fields.map(id => document.getElementById(id).value.trim());
+      const phoneDigits = phone.replace(/\D/g, '');
+      if (!(phoneDigits.length === 10 || (phoneDigits.length === 12 && phoneDigits.startsWith('91')))) {
+        document.getElementById('orderPhone').setCustomValidity('Enter a valid 10-digit Indian mobile number');
+        document.getElementById('orderPhone').reportValidity();
+        return;
+      }
+      const t = cartTotals();
+      const itemLines = cart.map(item => {
+        const p = products.find(product => product.id === item.id);
+        return `• ${p.name} (${p.size}) x ${item.qty} = ₹${(p.price * item.qty).toLocaleString('en-IN')}`;
+      });
+      const message = [
+        "Hello BENU'S NATURALS, I would like to enquire about this order:",
+        '', ...itemLines, '',
+        `Subtotal: ₹${t.subtotal.toLocaleString('en-IN')}`,
+        ...(promoDiscount ? [`Promo BENU15 (15%): -₹${t.discount.toLocaleString('en-IN')}`] : []),
+        `Estimated product total: ₹${t.total.toLocaleString('en-IN')}`,
+        '', `Name: ${name}`, `Phone: ${phone}`, `Address: ${address}`, `City: ${city}`, `PIN: ${pin}`,
+        ...(notes ? [`Notes: ${notes}`] : []), '',
+        'Please confirm availability, any delivery charges, final payable amount and payment instructions. This is an enquiry, not a confirmed or paid order.'
+      ].join('\n');
+      const url = `https://wa.me/919072075455?text=${encodeURIComponent(message)}`;
+      window.location.href = url;
+    });
+    document.getElementById('orderPhone').addEventListener('input', e => e.target.setCustomValidity(''));
+
+    // Wishlist Functions
+    function toggleWishlist(productId) {
+      const idx = wishlist.indexOf(productId);
+      const prod = products.find(p => p.id === productId);
+      if (idx === -1) {
+        wishlist.push(productId);
+        showToast(`Saved ${prod.name} to Wishlist`);
+      } else {
+        wishlist.splice(idx, 1);
+        showToast(`Removed from Wishlist`);
+      }
+      updateWishlistUI();
+      renderProducts();
+    }
+
+    function updateWishlistUI() {
+      const badge = document.getElementById("wishlistBadge");
+      const container = document.getElementById("wishlistItemsContainer");
+      if (wishlist.length > 0) {
+        badge.textContent = wishlist.length;
+        badge.classList.remove("hidden");
+      } else {
+        badge.classList.add("hidden");
+      }
+
+      persistShoppingState();
+      if (wishlist.length === 0) {
+        container.innerHTML = `<p class="text-center py-12 font-serif text-xl text-umber/75">No saved botanicals yet.</p>`;
+      } else {
+        container.innerHTML = wishlist.map(id => {
+          const p = products.find(item => item.id === id);
+          return `
+            <div class="flex items-center justify-between gap-3 bg-cream/60 p-4 rounded-2xl border border-umber/10">
+              <div>
+                <h4 class="font-serif text-lg text-umber">${p.name}</h4>
+                <p class="text-xs text-umber/70">₹${p.price.toLocaleString('en-IN')} • ${p.size}</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="addToBag(${p.id}); toggleWishlist(${p.id}); closeWishlistDrawer(); openCartDrawer();" class="px-3.5 py-2 rounded-full bg-umber text-ivory text-[10px] uppercase tracking-widest">Move to Bag</button>
+                <button onclick="toggleWishlist(${p.id})" class="p-1.5 text-umber/60 hover:text-umber">✕</button>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+    }
+
+    // Drawer Controls
+    const cartDrawer = document.getElementById("cartDrawer");
+    const wishlistDrawer = document.getElementById("wishlistDrawer");
+    const mobileNavDrawer = document.getElementById("mobileNavDrawer");
+
+    function openCartDrawer() { cartDrawer.classList.remove("hidden"); }
+    function closeCartDrawer() { cartDrawer.classList.add("hidden"); }
+    function openWishlistDrawer() { wishlistDrawer.classList.remove("hidden"); }
+    function closeWishlistDrawer() { wishlistDrawer.classList.add("hidden"); }
+
+    document.getElementById("cartBtn").addEventListener("click", openCartDrawer);
+    document.getElementById("closeCartBtn").addEventListener("click", closeCartDrawer);
+    document.getElementById("cartBackdrop").addEventListener("click", closeCartDrawer);
+
+    document.getElementById("wishlistBtn").addEventListener("click", openWishlistDrawer);
+    document.getElementById("closeWishlistBtn").addEventListener("click", closeWishlistDrawer);
+    document.getElementById("wishlistBackdrop").addEventListener("click", closeWishlistDrawer);
+
+    document.getElementById("mobileMenuBtn").addEventListener("click", () => mobileNavDrawer.classList.remove("hidden"));
+    document.getElementById("closeMobileNavBtn").addEventListener("click", () => mobileNavDrawer.classList.add("hidden"));
+    document.getElementById("mobileNavBackdrop").addEventListener("click", () => mobileNavDrawer.classList.add("hidden"));
+    document.querySelectorAll(".mobile-nav-link").forEach(link => {
+      link.addEventListener("click", () => mobileNavDrawer.classList.add("hidden"));
+    });
+
+    // Newsletter Form
+    document.getElementById("newsletterForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      document.getElementById("newsletterFeedback").classList.remove("hidden");
+      e.target.reset();
+    });
+
+    // Toast Helper
+    let toastTimeout;
+    function showToast(message) {
+      const toast = document.getElementById("toastNotification");
+      document.getElementById("toastMessage").textContent = message;
+      toast.classList.remove("opacity-0", "translate-y-4");
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add("opacity-0", "translate-y-4");
+      }, 2600);
+    }
+
+    // Initialize App
+    restoreShoppingState();
+    renderProducts();
+    updateCartUI();
+    updateWishlistUI();
+  
+</script>
   <a href="https://wa.me/919072075455?text=Hello%20BENU%27S%20NATURALS%2C%20I%20would%20like%20to%20enquire." target="_blank" rel="noopener noreferrer" aria-label="Chat with BENU'S NATURALS on WhatsApp" title="Chat on WhatsApp" style="position:fixed;right:20px;bottom:20px;z-index:45;width:56px;height:56px;border-radius:50%;background:#25D366;color:white;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px #0003;">
     <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.65 15.02L2 22l5.12-1.34A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.08-1.12l-.37-.22-2.72.71.73-2.65-.24-.39A8 8 0 1 1 12 20zm4.4-6.05c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.19-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.39-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.09 3.62.57.25 1.02.4 1.37.51.57.18 1.09.15 1.5.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
   </a>
