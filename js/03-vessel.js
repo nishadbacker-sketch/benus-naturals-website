@@ -3,6 +3,23 @@
     // =========================================================================
     function renderVesselIllustration(product) {
       const { vesselType, accentColor, name } = product;
+      if (vesselType === "millet-powder") {
+        // Illustrative premium pouch concept; no real-product photograph or certification is implied.
+        return `
+          <svg viewBox="0 0 180 210" class="w-40 h-44 mx-auto drop-shadow-md transition-transform duration-500 group-hover:scale-105" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${name} powder pack illustration">
+            <ellipse cx="90" cy="193" rx="58" ry="8" fill="#7C5A43" fill-opacity="0.10" />
+            <path d="M51 29 L129 29 L140 186 Q90 196 40 186 Z" fill="#E8D7BF" stroke="#7C5A43" stroke-width="1.3"/>
+            <path d="M51 29 L129 29 L132 47 L48 47 Z" fill="#B89A72" stroke="#7C5A43" stroke-width="1.1"/>
+            <path d="M45 177 Q90 186 135 177 L140 186 Q90 196 40 186 Z" fill="${accentColor}" fill-opacity=".6"/>
+            <rect x="50" y="59" width="80" height="102" rx="4" fill="#FAF6EE" stroke="#C59B76" stroke-width="1"/>
+            <image href="${originalWordmark}" x="58" y="68" width="64" height="43" preserveAspectRatio="xMidYMid meet" />
+            <line x1="62" y1="114" x2="118" y2="114" stroke="#C59B76"/>
+            <text x="90" y="126" text-anchor="middle" fill="#7C5A43" font-family="Cormorant Garamond,serif" font-size="12" font-style="italic">Millet Powder</text>
+            <text x="90" y="140" text-anchor="middle" fill="#A97954" font-family="Montserrat,sans-serif" font-size="5" letter-spacing="1">PRODUCT CONCEPT</text>
+            <path d="M75 154 L80 145 L85 154 M93 154 L98 145 L103 154" fill="none" stroke="${accentColor}" stroke-width="1.2"/>
+          </svg>
+        `;
+      }
       if (vesselType === "soap") {
         // Brand-matched illustrated bath bar; no product photograph or certification implied.
         return `
