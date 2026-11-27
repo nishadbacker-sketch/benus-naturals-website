@@ -68,7 +68,7 @@
                   <span class="text-[11px] text-umber/60 ml-1">/ ${product.size}</span>
                 </div>
                 <button onclick="addToBag(${product.id})" class="px-5 py-2.5 rounded-full bg-umber text-ivory text-[11px] tracking-[0.18em] uppercase font-medium hover:bg-espresso transition shadow-xs">
-                  Add to Bag
+                  ${product.priceIndicative ? "Enquire / Add to Bag" : "Add to Bag"}
                 </button>
               </div>
             </div>
