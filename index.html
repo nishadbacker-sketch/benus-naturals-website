@@ -299,6 +299,9 @@
         <button data-category="Shampoo Bars" class="category-btn px-5 py-2.5 rounded-full text-xs tracking-[0.18em] uppercase transition bg-cream text-umber hover:bg-blush border border-umber/10">
           Shampoo Bars
         </button>
+        <button data-category="Hair Oils" class="category-btn px-5 py-2.5 rounded-full text-xs tracking-[0.18em] uppercase transition bg-cream text-umber hover:bg-blush border border-umber/10">
+          Hair Oils
+        </button>
         <button data-category="Millet Collections" class="category-btn px-5 py-2.5 rounded-full text-xs tracking-[0.18em] uppercase transition bg-cream text-umber hover:bg-blush border border-umber/10">
           Millet Collections
         </button>
@@ -1085,6 +1088,78 @@
         description: "A herbal shampoo bar concept pairing amla with curry leaf, inspired by familiar Kerala hair-care ingredients.",
         ingredients: "Proposed botanical features: amla and curry leaf. Final cleanser base, complete INCI ingredients, fragrance, allergens, safety testing and suitability claims pending confirmation.",
         ritual: "Lather in wet palms, gently cleanse wet hair, rinse well and store the bar on a draining tray."
+      },
+      {
+        id: 22,
+        name: "Neeli & Bhringraj Kerala Hair Oil",
+        category: "Hair Oils",
+        subtitle: "Neeli • Kayyunni • Coconut Oil",
+        price: 549,
+        priceIndicative: true,
+        availableForEnquiry: true,
+        size: "100 ml (provisional)",
+        rating: null,
+        reviews: 0,
+        badge: "Kerala Hair Ritual",
+        vesselType: "hair-oil",
+        accentColor: "#7F8F72",
+        description: "A Kerala-inspired botanical hair oil concept drawing on the traditional combination of neeli (indigo), bhringraj (kayyunni) and coconut oil.",
+        ingredients: "Proposed features: neeli, bhringraj and coconut oil. This is not claimed to be a classical Neelibhringadi formulation. Full INCI formulation, sourcing, safety and quality testing remain pending.",
+        ritual: "For the proposed pre-wash ritual, massage a small amount gently onto scalp and hair, then wash out. Final usage directions pending."
+      },
+      {
+        id: 23,
+        name: "Chembarathi & Curry Leaf Hair Oil",
+        category: "Hair Oils",
+        subtitle: "Hibiscus • Kariveppila • Coconut",
+        price: 449,
+        priceIndicative: true,
+        availableForEnquiry: true,
+        size: "100 ml (provisional)",
+        rating: null,
+        reviews: 0,
+        badge: "Kerala Hair Ritual",
+        vesselType: "hair-oil",
+        accentColor: "#B9787D",
+        description: "A floral herbal hair-oil concept inspired by Kerala's familiar chembarathi (hibiscus) and curry-leaf hair-care traditions.",
+        ingredients: "Proposed features: hibiscus, curry leaf and coconut oil. Complete ingredient list, fragrance, safety testing and suitability information pending confirmation.",
+        ritual: "Use as a proposed pre-wash hair massage oil; rinse with shampoo. Final application guidance pending."
+      },
+      {
+        id: 24,
+        name: "Nellikka & Coconut Hair Oil",
+        category: "Hair Oils",
+        subtitle: "Amla • Kerala Coconut • Tulsi",
+        price: 479,
+        priceIndicative: true,
+        availableForEnquiry: true,
+        size: "100 ml (provisional)",
+        rating: null,
+        reviews: 0,
+        badge: "Kerala Hair Ritual",
+        vesselType: "hair-oil",
+        accentColor: "#A2A66F",
+        description: "A coconut-based hair-oil concept pairing nellikka (amla) with tulsi-inspired botanical notes.",
+        ingredients: "Proposed features: amla, coconut oil and tulsi. Complete INCI ingredients, stability testing and final product details pending confirmation.",
+        ritual: "Apply a small amount to hair before washing, according to the eventual approved label."
+      },
+      {
+        id: 25,
+        name: "Activated Charcoal & Tea Tree Soap",
+        category: "Naturals Soaps",
+        subtitle: "Activated Charcoal • Tea Tree",
+        price: 399,
+        priceIndicative: true,
+        availableForEnquiry: true,
+        size: "100 g (provisional)",
+        rating: null,
+        reviews: 0,
+        badge: "Botanical Soap Concept",
+        vesselType: "soap",
+        accentColor: "#555A59",
+        description: "A charcoal-grey cleansing-bar concept combining activated charcoal with tea-tree botanical notes, designed to complement the Naturals Soaps range.",
+        ingredients: "Proposed ingredients: activated charcoal and tea-tree ingredient. The full cleansing base, concentrations, fragrance, allergens, safety testing and claims remain unconfirmed.",
+        ritual: "Lather on wet hands or body, rinse thoroughly, and avoid contact with eyes. Allow the bar to dry between uses."
       }
     ];
 
@@ -1148,6 +1223,23 @@
             <text x="90" y="126" text-anchor="middle" fill="#7C5A43" font-family="Cormorant Garamond,serif" font-size="12" font-style="italic">Millet Collection</text>
             <text x="90" y="140" text-anchor="middle" fill="#A97954" font-family="Montserrat,sans-serif" font-size="5" letter-spacing="1">PRODUCT CONCEPT</text>
             <path d="M75 154 L80 145 L85 154 M93 154 L98 145 L103 154" fill="none" stroke="${accentColor}" stroke-width="1.2"/>
+          </svg>
+        `;
+      }
+      if (vesselType === "hair-oil") {
+        // Matching luxury hair-oil bottle illustration, not a photograph or verified product pack.
+        return `
+          <svg viewBox="0 0 180 210" class="w-40 h-44 mx-auto drop-shadow-md transition-transform duration-500 group-hover:scale-105" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${name} hair oil bottle illustration">
+            <ellipse cx="90" cy="193" rx="46" ry="7" fill="#7C5A43" fill-opacity=".09"/>
+            <rect x="79" y="24" width="22" height="18" rx="3" fill="#6A4D39"/>
+            <rect x="75" y="42" width="30" height="11" rx="3" fill="#C59B76" stroke="#80583E" stroke-width="1"/>
+            <path d="M77 53H103V66Q123 69 127 83V178Q127 190 115 190H65Q53 190 53 178V83Q57 69 77 66Z" fill="#F1E4D4" stroke="#7C5A43" stroke-width="1.4"/>
+            <path d="M55 101H125V178Q125 188 114 188H66Q55 188 55 178Z" fill="${accentColor}" fill-opacity=".4"/>
+            <rect x="61" y="99" width="58" height="75" rx="5" fill="#FAF6EE" stroke="#C59B76" stroke-width="1"/>
+            <image href="${originalWordmark}" x="67" y="105" width="46" height="34" preserveAspectRatio="xMidYMid meet"/>
+            <path d="M70 141H110" stroke="#C59B76" stroke-width=".8"/>
+            <text x="90" y="152" text-anchor="middle" fill="#7C5A43" font-family="Cormorant Garamond,serif" font-size="11" font-style="italic">Hair Oil</text>
+            <text x="90" y="164" text-anchor="middle" fill="#A97954" font-family="Montserrat,sans-serif" font-size="4.5" letter-spacing=".7">KERALA INSPIRED</text>
           </svg>
         `;
       }
@@ -1419,7 +1511,7 @@
           <div class="md:col-span-5 bg-gradient-to-b from-blush/60 to-cream rounded-2xl p-6 border border-umber/10 text-center">
             <span class="inline-block px-3 py-1 rounded-full bg-ivory text-[10px] tracking-[0.2em] uppercase text-umber mb-2">${product.badge}</span>
             ${renderVesselIllustration(product)}
-            <p class="text-[11px] uppercase tracking-[0.2em] text-umber/70 mt-3">${product.size}${product.vesselType === "shampoo-bar" ? " • Illustrated Shampoo Bar Concept" : product.vesselType === "soap" ? " • Illustrated Soap Concept" : product.vesselType === "millet" ? " • Illustrative Millet Pack" : " • UV-Protected Glass"}</p>
+            <p class="text-[11px] uppercase tracking-[0.2em] text-umber/70 mt-3">${product.size}${product.vesselType === "hair-oil" ? " • Illustrated Hair Oil Concept" : product.vesselType === "shampoo-bar" ? " • Illustrated Shampoo Bar Concept" : product.vesselType === "soap" ? " • Illustrated Soap Concept" : product.vesselType === "millet" ? " • Illustrative Millet Pack" : " • UV-Protected Glass"}</p>
           </div>
           <div class="md:col-span-7">
             <span class="text-[11px] uppercase tracking-[0.22em] text-bronze font-semibold">${product.category}</span>
@@ -1434,7 +1526,7 @@
             <p class="mt-4 text-xs sm:text-sm text-umber/85 leading-relaxed font-light">${product.description}</p>
 
             <div class="mt-5 p-4 rounded-2xl bg-blush/45 border border-umber/10">
-              <h4 class="text-[10px] uppercase tracking-[0.22em] text-umber font-semibold">${product.vesselType === "shampoo-bar" ? "Proposed Hair-Care Ingredients — Details Pending" : product.vesselType === "millet" ? "Proposed Ingredients — Final Details Pending" : product.vesselType === "soap" ? "Proposed Botanicals — Final Ingredients Pending" : "Full Botanical Ingredient List"}</h4>
+              <h4 class="text-[10px] uppercase tracking-[0.22em] text-umber font-semibold">${product.vesselType === "hair-oil" ? "Proposed Hair Oil Ingredients — Details Pending" : product.vesselType === "shampoo-bar" ? "Proposed Hair-Care Ingredients — Details Pending" : product.vesselType === "millet" ? "Proposed Ingredients — Final Details Pending" : product.vesselType === "soap" ? "Proposed Botanicals — Final Ingredients Pending" : "Full Botanical Ingredient List"}</h4>
               <p class="text-xs text-umber/80 mt-1.5 leading-relaxed">${product.ingredients}</p>
             </div>
 

@@ -20,6 +20,23 @@
           </svg>
         `;
       }
+      if (vesselType === "hair-oil") {
+        // Matching luxury hair-oil bottle illustration, not a photograph or verified product pack.
+        return `
+          <svg viewBox="0 0 180 210" class="w-40 h-44 mx-auto drop-shadow-md transition-transform duration-500 group-hover:scale-105" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${name} hair oil bottle illustration">
+            <ellipse cx="90" cy="193" rx="46" ry="7" fill="#7C5A43" fill-opacity=".09"/>
+            <rect x="79" y="24" width="22" height="18" rx="3" fill="#6A4D39"/>
+            <rect x="75" y="42" width="30" height="11" rx="3" fill="#C59B76" stroke="#80583E" stroke-width="1"/>
+            <path d="M77 53H103V66Q123 69 127 83V178Q127 190 115 190H65Q53 190 53 178V83Q57 69 77 66Z" fill="#F1E4D4" stroke="#7C5A43" stroke-width="1.4"/>
+            <path d="M55 101H125V178Q125 188 114 188H66Q55 188 55 178Z" fill="${accentColor}" fill-opacity=".4"/>
+            <rect x="61" y="99" width="58" height="75" rx="5" fill="#FAF6EE" stroke="#C59B76" stroke-width="1"/>
+            <image href="${originalWordmark}" x="67" y="105" width="46" height="34" preserveAspectRatio="xMidYMid meet"/>
+            <path d="M70 141H110" stroke="#C59B76" stroke-width=".8"/>
+            <text x="90" y="152" text-anchor="middle" fill="#7C5A43" font-family="Cormorant Garamond,serif" font-size="11" font-style="italic">Hair Oil</text>
+            <text x="90" y="164" text-anchor="middle" fill="#A97954" font-family="Montserrat,sans-serif" font-size="4.5" letter-spacing=".7">KERALA INSPIRED</text>
+          </svg>
+        `;
+      }
       if (vesselType === "shampoo-bar") {
         // Illustrative solid shampoo bar and paper sleeve; not a photograph of a finished product.
         return `
