@@ -155,7 +155,7 @@
         ...(notes ? [`Notes: ${notes}`] : []), '',
         'Please confirm availability, any delivery charges, final payable amount and payment instructions. This is an enquiry, not a confirmed or paid order.'
       ].join('\n');
-      const url = `https://wa.me/919072075455?text=${encodeURIComponent(message)}`;
+      const url = `https://wa.me/919656604002?text=${encodeURIComponent(message)}`;
       window.location.href = url;
     });
     document.getElementById('orderPhone').addEventListener('input', e => e.target.setCustomValidity(''));
