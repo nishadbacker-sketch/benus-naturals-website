@@ -34,7 +34,7 @@
             <image href="${originalWordmark}" x="70" y="101" width="40" height="29" preserveAspectRatio="xMidYMid meet" />
             <line x1="76" y1="134" x2="104" y2="134" stroke="#C59B76" stroke-width="0.7"/>
             <text x="90" y="146" text-anchor="middle" fill="#7C5A43" font-family="Cormorant Garamond, serif" font-style="italic" font-size="7.5">Pure Elixir</text>
-            <text x="90" y="159" text-anchor="middle" fill="#A97954" font-family="Montserrat, sans-serif" font-size="4.5" letter-spacing="1">30 ML • ORGANIC</text>
+            <text x="90" y="159" text-anchor="middle" fill="#A97954" font-family="Montserrat, sans-serif" font-size="4.5" letter-spacing="1">30 ML • NATURALS</text>
             <defs>
               <linearGradient id="copperCollar" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0%" stop-color="#8C6244"/>
@@ -80,7 +80,7 @@
             <image href="${originalWordmark}" x="71" y="97" width="38" height="30" preserveAspectRatio="xMidYMid meet" />
             <line x1="77" y1="133" x2="103" y2="133" stroke="#C59B76" stroke-width="0.7"/>
             <text x="90" y="146" text-anchor="middle" fill="#7C5A43" font-family="Cormorant Garamond, serif" font-style="italic" font-size="7.5">Pure Hydrosol</text>
-            <text x="90" y="160" text-anchor="middle" fill="#A97954" font-family="Montserrat, sans-serif" font-size="4.5" letter-spacing="1">100 ML • ORGANIC</text>
+            <text x="90" y="160" text-anchor="middle" fill="#A97954" font-family="Montserrat, sans-serif" font-size="4.5" letter-spacing="1">100 ML • NATURALS</text>
             <defs>
               <linearGradient id="mistCollar" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0%" stop-color="#8C6244"/>
