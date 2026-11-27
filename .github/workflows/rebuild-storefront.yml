@@ -1,0 +1,62 @@
+name: Build and verify storefront products
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'js/**'
+      - 'tools/build_inline_catalog.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bundle current product scripts into homepage
+        run: python3 tools/build_inline_catalog.py
+      - name: Validate syntax, products and rendered cards
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path('index.html').read_text(encoding='utf-8')
+          assert 'id="benus-inline-storefront-runtime"' in s
+          assert 'id="organicSoapGrid"' in s
+          assert 'data-category="Organic Soaps"' in s
+          assert s.count('category: "Organic Soaps"') == 6
+          assert s.count('category: "Facial Elixirs"') >= 1
+          assert 'renderProducts();' in s
+          assert 'Continue to WhatsApp Order Enquiry' in s
+          print("Verified expected product cards and checkout hooks")
+          PY
+          node - <<'JS'
+          const fs=require('fs');
+          const html=fs.readFileSync('index.html','utf8');
+          const js=html.match(/<script id="benus-inline-storefront-runtime">([\s\S]*?)<\/script>/)[1];
+          new Function(js);
+          const cache=new Map();
+          const el=id=>{
+            if (!cache.has(id)) cache.set(id,{innerHTML:'',textContent:'',value:'',style:{},
+              classList:{add(){},remove(){},contains(){return false},toggle(){return false}},
+              addEventListener(){},focus(){},reportValidity(){return true},setCustomValidity(){}});
+            return cache.get(id);
+          };
+          const document={getElementById:el,querySelectorAll(){return []},addEventListener(){}};
+          const app=new Function('document','localStorage','window','setTimeout','clearTimeout',
+            js+'\nreturn {renderProducts,select:v=>{activeCategory=v;renderProducts()}};')(
+            document,{getItem(){return null},setItem(){}},{location:{}},()=>0,()=>{});
+          const n=id=>(el(id).innerHTML.match(/<article /g)||[]).length;
+          if(n('productGrid')!==12||n('organicSoapGrid')!==6)throw Error('Wrong initial product counts');
+          app.select('Organic Soaps');
+          if(n('productGrid')!==6)throw Error('Organic soap filter empty');
+          console.log('Product card render tests passed');
+          JS
+      - name: Commit rebuilt index only when scripts changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if ! git diff --cached --quiet; then
+            git commit -m "Rebuild inline storefront from modular product scripts"
+            git push origin HEAD:main
+          fi
