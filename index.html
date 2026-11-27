@@ -17,6 +17,60 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="antialiased selection:bg-blush selection:text-espresso">
+  <!-- One-time prelaunch notice: dismissed visitors are not interrupted again on this browser. -->
+  <div id="maintenanceWelcomeModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="maintenanceWelcomeTitle" aria-describedby="maintenanceWelcomeDescription">
+    <div class="absolute inset-0 bg-espresso/70 backdrop-blur-sm" aria-hidden="true"></div>
+    <div class="relative w-full max-w-md rounded-3xl border border-umber/15 bg-ivory p-7 sm:p-10 text-center shadow-2xl">
+      <div class="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-blush/65 text-bronze" aria-hidden="true">
+        <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.64 5.64l2.12 2.12m8.48 8.48 2.12 2.12M18.36 5.64l-2.12 2.12M7.76 16.24l-2.12 2.12"/><circle cx="12" cy="12" r="4"/></svg>
+      </div>
+      <span class="text-[10px] tracking-[0.28em] uppercase text-bronze font-semibold">BENU'S NATURALS</span>
+      <h2 id="maintenanceWelcomeTitle" class="mt-3 font-serif text-3xl sm:text-4xl leading-tight text-umber">Website Under Maintenance</h2>
+      <p id="maintenanceWelcomeDescription" class="mt-4 text-sm leading-relaxed text-umber/80">Website under maintenance, will be live shortly with real products.</p>
+      <p class="mt-3 text-xs leading-relaxed text-umber/65">You can explore our preview collection in the meantime.</p>
+      <button id="maintenanceWelcomeDismiss" type="button" class="mt-7 w-full rounded-full bg-umber px-6 py-3.5 text-xs uppercase tracking-[0.18em] font-medium text-ivory hover:bg-espresso focus:outline-none focus:ring-2 focus:ring-bronze focus:ring-offset-2">Continue to Website</button>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var storageKey = "benus_maintenance_notice_seen_v1";
+      var modal = document.getElementById("maintenanceWelcomeModal");
+      var dismiss = document.getElementById("maintenanceWelcomeDismiss");
+      var previousFocus = null;
+      var previouslySeen = false;
+      try {
+        previouslySeen = window.localStorage.getItem(storageKey) === "1";
+      } catch (error) {
+        // Storage may be disabled in private browsing; allow the notice to show.
+      }
+      if (previouslySeen) return;
+      previousFocus = document.activeElement;
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      dismiss.focus();
+      function closeNotice() {
+        try {
+          window.localStorage.setItem(storageKey, "1");
+        } catch (error) {
+          // The notice is still dismissible without storage.
+        }
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+        if (previousFocus && previousFocus.focus) previousFocus.focus();
+        document.removeEventListener("keydown", onKeydown);
+      }
+      function onKeydown(event) {
+        if (event.key === "Escape") closeNotice();
+        if (event.key === "Tab") {
+          // Keep focus on the sole interactive control while the modal is open.
+          event.preventDefault();
+          dismiss.focus();
+        }
+      }
+      dismiss.addEventListener("click", closeNotice);
+      document.addEventListener("keydown", onKeydown);
+    }());
+  </script>
 
   <!-- Top Announcement Ribbon -->
   <div class="bg-umber text-ivory text-[11px] tracking-[0.22em] uppercase py-2.5 px-4 text-center font-light">
