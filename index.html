@@ -552,7 +552,7 @@
         <div class="mt-4 bg-ivory p-3 rounded-xl border border-umber/10">
           <p id="giftThresholdText" class="text-[11px] text-umber text-center font-medium"></p>
           <div class="w-full h-1.5 bg-blush rounded-full mt-2 overflow-hidden">
-            <div id="giftProgressBar" class="h-full bronze-gradient transition-all duration-500" style="width: 60%"></div>
+            <div id="giftProgressBar" class="h-full bronze-gradient transition-all duration-500" style="width: 0%"></div>
           </div>
         </div>
       </div>
@@ -592,9 +592,10 @@
           </div>
         </div>
 
-        <button onclick="payuCheckout()" class="mt-5 w-full py-4 rounded-full bg-umber text-ivory text-xs tracking-[0.22em] uppercase font-medium hover:bg-espresso transition shadow-luxury">
-          Proceed to Checkout with PayU
+        <button id="checkoutBtn" onclick="openCheckout()" disabled class="mt-5 w-full py-4 rounded-full bg-umber text-ivory text-xs tracking-[0.22em] uppercase font-medium hover:bg-espresso transition shadow-luxury disabled:opacity-50 disabled:cursor-not-allowed">
+          Continue to WhatsApp Order Enquiry
         </button>
+        <p class="text-[11px] text-center text-umber/70 mt-2">No payment is collected here. Availability, delivery and the final total are confirmed by our team.</p>
       </div>
 
     </div>
@@ -618,6 +619,28 @@
       <div id="wishlistItemsContainer" class="flex-1 overflow-y-auto p-6 space-y-4">
         <!-- Populated dynamically -->
       </div>
+    </div>
+  </div>
+
+  <!-- ORDER ENQUIRY: customer details are shared only when the visitor opens WhatsApp -->
+  <div id="checkoutModal" class="fixed inset-0 z-[60] hidden" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+    <div id="checkoutBackdrop" class="absolute inset-0 bg-espresso/60"></div>
+    <div class="relative mx-auto my-4 sm:my-10 max-w-lg w-[calc(100%-2rem)] bg-ivory rounded-3xl border border-umber/20 shadow-2xl max-h-[92vh] overflow-y-auto p-6 sm:p-8">
+      <div class="flex justify-between items-start gap-3 mb-4">
+        <div><h3 id="checkoutTitle" class="font-serif text-3xl text-umber">Order Enquiry</h3><p class="text-xs text-umber/70 mt-1">Complete your details to send your bag through WhatsApp.</p></div>
+        <button type="button" id="closeCheckoutBtn" aria-label="Close order enquiry" class="p-2 rounded-full hover:bg-blush text-umber">✕</button>
+      </div>
+      <form id="checkoutForm" class="space-y-3">
+        <label class="block text-xs text-umber">Full name *<input id="orderName" name="name" required maxlength="100" autocomplete="name" class="mt-1 block w-full rounded-xl border border-umber/20 bg-cream p-3 text-sm text-umber" /></label>
+        <label class="block text-xs text-umber">WhatsApp / phone number *<input id="orderPhone" name="phone" required type="tel" inputmode="tel" maxlength="20" autocomplete="tel" placeholder="10-digit Indian mobile number" pattern="[+]?[0-9 ]{10,17}" class="mt-1 block w-full rounded-xl border border-umber/20 bg-cream p-3 text-sm text-umber" /></label>
+        <label class="block text-xs text-umber">Delivery address *<textarea id="orderAddress" name="address" required maxlength="400" rows="3" autocomplete="street-address" class="mt-1 block w-full rounded-xl border border-umber/20 bg-cream p-3 text-sm text-umber"></textarea></label>
+        <label class="block text-xs text-umber">City / town *<input id="orderCity" name="city" required maxlength="100" autocomplete="address-level2" class="mt-1 block w-full rounded-xl border border-umber/20 bg-cream p-3 text-sm text-umber" /></label>
+        <label class="block text-xs text-umber">PIN code *<input id="orderPin" name="pin" required inputmode="numeric" pattern="[0-9]{6}" minlength="6" maxlength="6" autocomplete="postal-code" class="mt-1 block w-full rounded-xl border border-umber/20 bg-cream p-3 text-sm text-umber" /></label>
+        <label class="block text-xs text-umber">Additional instructions (optional)<textarea id="orderNotes" name="notes" maxlength="300" rows="2" class="mt-1 block w-full rounded-xl border border-umber/20 bg-cream p-3 text-sm text-umber"></textarea></label>
+        <div class="rounded-xl bg-blush/40 border border-umber/10 p-3 text-xs text-umber"><p id="checkoutSummary"></p><p class="mt-1">This is an enquiry, not a confirmed order. No online payment is collected. Our team will verify stock, promotions, delivery charges and the final payable amount.</p></div>
+        <label class="flex gap-2 text-xs text-umber items-start"><input id="orderConsent" type="checkbox" required class="mt-1" /> <span>I agree to share my details and order enquiry with BENU'S NATURALS via WhatsApp.</span></label>
+        <button id="sendOrderBtn" type="submit" class="w-full py-4 rounded-full bg-umber text-ivory text-xs uppercase tracking-[0.17em] font-medium hover:bg-espresso">Continue to WhatsApp</button>
+      </form>
     </div>
   </div>
 
