@@ -3,6 +3,21 @@
     // =========================================================================
     function renderVesselIllustration(product) {
       const { vesselType, accentColor, name } = product;
+      if (vesselType === "soap") {
+        // Brand-matched illustrated bath bar; no product photograph or certification implied.
+        return `
+          <svg viewBox="0 0 180 210" class="w-40 h-44 mx-auto drop-shadow-md transition-transform duration-500 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${name} soap bar illustration">
+            <ellipse cx="91" cy="181" rx="62" ry="9" fill="#7C5A43" fill-opacity="0.09" />
+            <rect x="30" y="45" width="120" height="127" rx="23" fill="${accentColor}" stroke="#7C5A43" stroke-width="1.2"/>
+            <rect x="37" y="52" width="106" height="113" rx="18" fill="#F8F4ED" fill-opacity="0.22" stroke="#F8F4ED" stroke-opacity="0.45"/>
+            <rect x="44" y="85" width="92" height="61" rx="5" fill="#F8F4ED" stroke="#C59B76" stroke-width="1.3"/>
+            <image href="${originalWordmark}" x="51" y="90" width="78" height="33" preserveAspectRatio="xMidYMid meet" />
+            <line x1="60" y1="124" x2="120" y2="124" stroke="#C59B76" stroke-width="0.8"/>
+            <text x="90" y="135" text-anchor="middle" fill="#7C5A43" font-family="Cormorant Garamond, serif" font-style="italic" font-size="9">Botanical Soap</text>
+            <text x="90" y="141.5" text-anchor="middle" fill="#A97954" font-family="Montserrat, sans-serif" font-size="4.6" letter-spacing="0.75">100 G · CONCEPT</text>
+          </svg>
+        `;
+      }
       if (vesselType === "dropper") {
         return `
           <svg viewBox="0 0 180 210" class="w-40 h-44 mx-auto drop-shadow-md transition-transform duration-500 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">

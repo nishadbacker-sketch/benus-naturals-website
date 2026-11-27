@@ -54,7 +54,7 @@
               <div>
                 <div class="flex items-center justify-between text-[11px] text-bronze">
                   <span class="uppercase tracking-[0.18em] font-medium">${product.category}</span>
-                  <span>★ ${product.rating} (${product.reviews})</span>
+                  <span>${product.rating == null ? "New • Details pending" : `★ ${product.rating} (${product.reviews})`}</span>
                 </div>
                 <h3 onclick="openQuickView(${product.id})" class="font-serif text-2xl text-umber mt-1.5 leading-snug cursor-pointer hover:text-bronze transition">
                   ${product.name}
@@ -64,11 +64,11 @@
 
               <div class="mt-6 pt-4 border-t border-umber/10 flex items-center justify-between gap-3">
                 <div>
-                  <span class="font-serif text-xl font-semibold text-umber">₹${product.price.toLocaleString('en-IN')}</span>
+                  <span class="font-serif text-xl font-semibold text-umber">${product.priceIndicative ? "Indicative " : ""}₹${product.price.toLocaleString('en-IN')}</span>
                   <span class="text-[11px] text-umber/60 ml-1">/ ${product.size}</span>
                 </div>
                 <button onclick="addToBag(${product.id})" class="px-5 py-2.5 rounded-full bg-umber text-ivory text-[11px] tracking-[0.18em] uppercase font-medium hover:bg-espresso transition shadow-xs">
-                  Add to Bag
+                  ${product.priceIndicative ? "Enquire / Add to Bag" : "Add to Bag"}
                 </button>
               </div>
             </div>
