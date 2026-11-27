@@ -1,29 +1,7 @@
     // =========================================================================
     // 4. RENDER PRODUCT GRID & FILTERING
     // =========================================================================
-    function renderProducts() {
-      const grid = document.getElementById("productGrid");
-      const emptyState = document.getElementById("emptySearchState");
-
-      const filtered = products.filter(p => {
-        const matchesCat = activeCategory === "All" || p.category === activeCategory;
-        const q = searchQuery.toLowerCase().trim();
-        const matchesSearch = !q ||
-          p.name.toLowerCase().includes(q) ||
-          p.subtitle.toLowerCase().includes(q) ||
-          p.category.toLowerCase().includes(q) ||
-          p.ingredients.toLowerCase().includes(q);
-        return matchesCat && matchesSearch;
-      });
-
-      if (filtered.length === 0) {
-        grid.innerHTML = "";
-        emptyState.classList.remove("hidden");
-        return;
-      }
-
-      emptyState.classList.add("hidden");
-      grid.innerHTML = filtered.map(product => {
+    function renderProductCard(product) {
         const isWished = wishlist.includes(product.id);
         return `
           <article class="group bg-cream/65 rounded-3xl border border-umber/12 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-luxury hover:border-bronze/40">
@@ -74,6 +52,37 @@
             </div>
           </article>
         `;
-      }).join("");
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById("productGrid");
+      const emptyState = document.getElementById("emptySearchState");
+
+      const filtered = products.filter(p => {
+        const matchesCat = activeCategory === "All" || p.category === activeCategory;
+        const q = searchQuery.toLowerCase().trim();
+        const matchesSearch = !q ||
+          p.name.toLowerCase().includes(q) ||
+          p.subtitle.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q) ||
+          p.ingredients.toLowerCase().includes(q);
+        return matchesCat && matchesSearch;
+      });
+
+      // Also render the dedicated Kerala soap collection, independently of the active filter.
+      const soapGrid = document.getElementById("organicSoapGrid");
+      if (soapGrid) {
+        soapGrid.innerHTML = products.filter(p => p.category === "Organic Soaps")
+          .map(renderProductCard).join("");
+      }
+
+      if (filtered.length === 0) {
+        grid.innerHTML = "";
+        emptyState.classList.remove("hidden");
+        return;
+      }
+
+      emptyState.classList.add("hidden");
+      grid.innerHTML = filtered.map(renderProductCard).join("");
     }
 
